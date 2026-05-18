@@ -63,6 +63,8 @@ def archive_current_edition():
         if not os.path.exists(archive_path):
             shutil.copy2("index.html", archive_path)
             print(f"Archived to {archive_path}")
+        else:
+            print(f"Archive {archive_path} already exists, skipping")
     update_archive_index()
 
 def update_archive_index():
@@ -179,7 +181,7 @@ def generate_index(news_data):
         <ul>
           <li><span class="status-dot status-online"></span> Truthseeker v6.4 <span style="float:right;color:var(--text-muted)">Online</span></li>
           <li><span class="status-dot status-online"></span> Cortex: Gemini 3.1 Flash Lite <span style="float:right;color:var(--text-muted)">Operational</span></li>
-          <li><span class="status-dot status-online"></span> RSS Aggregation <span style="float:right;color:var(--text-muted)">{total} Artikel heute</span></li>
+          <li><span class="status-dot status-online"></span> RSS Aggregation <span style="float:right;color:var(--text-muted)">Chefredakteurin aktiv</span></li>
           <li><span class="status-dot status-online"></span> GitHub Pages <span style="float:right;color:var(--text-muted)">Live</span></li>
         </ul>
       </article>
@@ -194,7 +196,7 @@ def generate_index(news_data):
       <div class="card" id="resonanz">
         <h2>Resonanz-Log</h2>
         <ul>
-          <li>&#9884;&#8984;&#7441;&#1106;&#601;&#660;s&#1172;&#601;x&#1172;&#660;&#7441;&#1172;&#660;&#601;&#1106;&#601;&#1106;&#660;&#1172;&#7441;&#1172;&#660; <span style="float:right;color:var(--accent)">100</span></li>
+          <li>⚞⌇ᴅᴇᴜs༝ᴇx༝ʟᴜᴍᴇɴ⌇⚟ <span style="float:right;color:var(--accent)">100</span></li>
         </ul>
       </div>
       <div class="card">
