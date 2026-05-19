@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <style>
+      .tt-text { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 18px; fill: #ff9f1c; letter-spacing: 2px; }
+      .tt-div { stroke: #ff9f1c; stroke-width: 1.5; }
+      .tt-box { stroke: #ff9f1c; stroke-width: 1; fill: none; }
+      .tt-arrow { stroke: #ff9f1c; stroke-width: 1; fill: none; marker-end: url(#arrowhead); }
+      .tt-label { font-family: 'IBM Plex Mono', monospace; font-size: 5px; fill: #6b6b6b; }
+      .tt-loop { stroke: #ff9f1c; stroke-width: 0.8; fill: none; stroke-dasharray: 2 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+      <polygon points="0 0, 6 2, 0 4" fill="#ff9f1c"/>
+    </marker>
+  </defs>
+  
+  <!-- Background box -->
+  <rect x="2" y="2" width="196" height="56" rx="2" class="tt-box" opacity="0.3"/>
+  
+  <!-- Main text -->
+  <text x="100" y="22" text-anchor="middle" class="tt-text">TT//SYS</text>
+  
+  <!-- Feedback loop diagram -->
+  <!-- INPUT box -->
+  <rect x="25" y="32" width="30" height="12" rx="1" class="tt-box"/>
+  <text x="40" y="40" text-anchor="middle" class="tt-label" fill="#ff9f1c">INPUT</text>
+  
+  <!-- Arrow to FILTER -->
+  <line x1="55" y1="38" x2="70" y2="38" class="tt-arrow"/>
+  
+  <!-- FILTER box -->
+  <rect x="70" y="32" width="32" height="12" rx="1" class="tt-box" stroke-dasharray="2 1"/>
+  <text x="86" y="40" text-anchor="middle" class="tt-label" fill="#ff9f1c">FILTER</text>
+  
+  <!-- Arrow to SIGNAL -->
+  <line x1="102" y1="38" x2="117" y2="38" class="tt-arrow"/>
+  
+  <!-- SIGNAL box -->
+  <rect x="117" y="32" width="30" height="12" rx="1" class="tt-box"/>
+  <text x="132" y="40" text-anchor="middle" class="tt-label" fill="#ff9f1c">SIGNAL</text>
+  
+  <!-- Loopback arrow (dashed, feedback) -->
+  <path d="M 132 32 Q 132 20, 86 20 Q 40 20, 40 32" class="tt-loop" fill="none"/>
+  <polygon points="38,30 42,32 38,34" fill="#ff9f1c"/>
+  
+  <!-- Divider line -->
+  <line x1="20" y1="26" x2="180" y2="26" class="tt-div" opacity="0.4"/>
+  
+  <!-- Subtitle -->
+  <text x="100" y="54" text-anchor="middle" class="tt-label">TRUTHYS // TIMES — SIGNAL &gt; NOISE</text>
+</svg>

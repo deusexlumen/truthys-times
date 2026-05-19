@@ -1,0 +1,540 @@
+/* TT//SYS — System Interface Stylesheet
+ * TRUTHYS // TIMES — Autonomous Signal Processing System
+ * Font: IBM Plex Mono (via Google Fonts)
+ * Palette: Black + Amber (control system aesthetic)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #080808;
+  --bg-elevated: #0d0d0d;
+  --bg-panel: #111111;
+  --border: #1a1a1a;
+  --border-bright: #2a2a2a;
+  --text: #e8e6e3;
+  --text-dim: #6b6b6b;
+  --text-faint: #3a3a3a;
+  --amber: #ff9f1c;
+  --amber-dim: #b87314;
+  --amber-glow: rgba(255, 159, 28, 0.08);
+  --green: #4ade80;
+  --red: #f87171;
+  --font: "IBM Plex Mono", "JetBrains Mono", "Fira Code", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+::selection {
+  background: var(--amber);
+  color: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SYSTEM HEADER ── */
+.sys-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 1rem 1rem;
+  background: var(--bg-elevated);
+}
+
+.sys-header-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sys-logo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.sys-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sys-title-block {}
+
+.sys-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.sys-title span {
+  color: var(--amber);
+}
+
+.sys-sub {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+.sys-meta-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
+}
+
+.sys-meta-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sys-status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 4px var(--green);
+}
+
+/* ── SYSTEM NAV ── */
+.sys-nav {
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  display: flex;
+  gap: 0.1rem;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--bg-elevated);
+}
+
+.sys-nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+
+.sys-nav a:hover {
+  color: var(--amber);
+  border-color: var(--border-bright);
+  background: var(--bg-panel);
+}
+
+.sys-nav a.active {
+  color: var(--amber);
+  border-color: var(--amber-dim);
+  background: var(--amber-glow);
+}
+
+/* ── TELEMETRY BAR ── */
+.telemetry {
+  border-bottom: 1px solid var(--border);
+  padding: 0.35rem 1rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  background: var(--bg);
+  letter-spacing: 0.03em;
+}
+
+.telemetry span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.telemetry .val {
+  color: var(--amber);
+}
+
+.telemetry .val.dim {
+  color: var(--text-dim);
+}
+
+/* ── LAYOUT ── */
+.sys-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .sys-container { grid-template-columns: 1fr; }
+}
+
+/* ── PANELS ── */
+.sys-panel {
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  margin-bottom: 1rem;
+}
+
+.sys-panel-header {
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-elevated);
+}
+
+.sys-panel-header .panel-id {
+  color: var(--text-faint);
+  font-size: 0.6rem;
+}
+
+.sys-panel-body {
+  padding: 0.75rem;
+}
+
+/* ── EDITORIAL ── */
+.editorial-meta {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  margin-bottom: 0.5rem;
+}
+
+.editorial-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+}
+
+.editorial-byline {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  margin-bottom: 0.75rem;
+}
+
+.editorial-body {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.editorial-body p + p {
+  margin-top: 0.75rem;
+}
+
+/* ── BRIEFING ── */
+.briefing-text {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+}
+
+.briefing-stats {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--amber);
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
+}
+
+/* ── NEWS LIST ── */
+.sys-list {
+  list-style: none;
+}
+
+.sys-list li {
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 0;
+}
+
+.sys-list li:last-child {
+  border-bottom: none;
+}
+
+.sys-list li a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.sys-list li a:hover {
+  color: var(--amber);
+}
+
+.sys-list li .source {
+  float: right;
+  color: var(--text-faint);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sys-list li .desc {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  margin-top: 0.15rem;
+}
+
+/* ── STATUS LIST ── */
+.status-list {
+  list-style: none;
+}
+
+.status-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.75rem;
+}
+
+.status-list li:last-child {
+  border-bottom: none;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.online {
+  background: var(--green);
+  box-shadow: 0 0 4px var(--green);
+}
+
+.status-dot.warn {
+  background: var(--amber);
+  box-shadow: 0 0 4px var(--amber);
+}
+
+.status-dot.offline {
+  background: var(--red);
+}
+
+.status-label {
+  flex: 1;
+  color: var(--text);
+}
+
+.status-val {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+}
+
+/* ── WEATHER ── */
+.weather-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.weather-cell {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.5rem;
+  font-size: 0.65rem;
+}
+
+.weather-cell .label {
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.6rem;
+  margin-bottom: 0.15rem;
+}
+
+.weather-cell .value {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.weather-icon {
+  font-size: 1.5rem;
+}
+
+.weather-temp {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.weather-cond {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.weather-update {
+  font-size: 0.6rem;
+  color: var(--text-faint);
+  text-align: right;
+  margin-top: 0.4rem;
+}
+
+/* ── ARCHIVE LIST ── */
+.archive-list {
+  list-style: none;
+}
+
+.archive-list li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.archive-list li:last-child {
+  border-bottom: none;
+}
+
+.archive-list li a {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.archive-list li a:hover {
+  color: var(--amber);
+}
+
+.archive-tag {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.05rem 0.3rem;
+  border: 1px solid var(--amber-dim);
+  color: var(--amber);
+  background: var(--amber-glow);
+}
+
+/* ── RESONANCE ── */
+.resonance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.75rem;
+}
+
+.resonance-row:last-child {
+  border-bottom: none;
+}
+
+.resonance-id {
+  color: var(--text-dim);
+}
+
+.resonance-score {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+/* ── QUOTE ── */
+.sys-quote {
+  border-left: 2px solid var(--amber);
+  padding-left: 0.75rem;
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.sys-quote-source {
+  text-align: right;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  margin-top: 0.4rem;
+  font-style: normal;
+}
+
+/* ── SOURCES ── */
+.source-grid {
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.source-grid strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── FOOTER ── */
+.sys-footer {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  margin-top: 2rem;
+}
+
+.sys-footer p + p {
+  margin-top: 0.3rem;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amber-dim);
+}
+
+/* ── ARCHIVE PAGE ── */
+.archive-page .sys-panel-body {
+  padding: 1rem;
+}
+
+.archive-page .archive-list li {
+  padding: 0.5rem 0;
+}

@@ -1,9 +1,11 @@
-name: Build Truthy's Times
+name: Build TT//SYS
 
 on:
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [rebuild, rss-update, webhook]
 
 permissions:
   contents: write
