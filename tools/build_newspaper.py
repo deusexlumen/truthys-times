@@ -333,6 +333,15 @@ def generate_index(news_data, weather=None, total_feeds=0, total_items=0):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Truthy\'s Times | Ausgabe #{edition_num:03d} | {iso_date}</title>
+  <meta property="og:title" content="Truthseeker Daily #{edition_num:03d} | {iso_date}">
+  <meta property="og:description" content="Destillierte Intelligenz. Tech, Wissenschaft &amp; digitale Kultur — kuratiert von Truthseeker v6.4.">
+  <meta property="og:image" content="https://deusexlumen.github.io/truthys-times/assets/og-banner.png">
+  <meta property="og:url" content="https://deusexlumen.github.io/truthys-times/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Truthseeker Daily #{edition_num:03d} | {iso_date}">
+  <meta name="twitter:description" content="Destillierte Intelligenz. Tech, Wissenschaft &amp; digitale Kultur.">
+  <meta name="twitter:image" content="https://deusexlumen.github.io/truthys-times/assets/og-banner.png">
   <link rel="stylesheet" href="css/design-v1.css">
 </head>
 <body>
