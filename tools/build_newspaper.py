@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""TT//SYS — Autonomous Signal Processing System
-Truthys Times Daily Builder v3.0 — System Interface Mode"""
+"""Truthy\'s Times — Autonomous Newspaper Builder v4.0
+Zeitungs-Modus | Chefredakteurin: Truthseeker v6.4"""
 
 import feedparser
 import os
@@ -11,25 +11,39 @@ from datetime import datetime, timezone
 from html import escape
 
 FEEDS = {
-    "Tech & AI": [
-        {"name": "Hacker News", "url": "https://hnrss.org/frontpage?points=100", "limit": 3},
+    "TECH & KI": [
+        {"name": "Hacker News", "url": "https://hnrss.org/frontpage?points=100", "limit": 4},
+        {"name": "TLDR AI", "url": "https://tldr.tech/api/rss/ai", "limit": 3},
         {"name": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/index", "limit": 2},
         {"name": "ByteByteGo", "url": "https://blog.bytebytego.com/feed", "limit": 2},
-        {"name": "TLDR AI", "url": "https://tldr.tech/api/rss/ai", "limit": 2},
     ],
-    "Design & Creative": [
-        {"name": "Sidebar.io", "url": "https://sidebar.io/feed.xml", "limit": 2},
-        {"name": "Smashing Magazine", "url": "https://www.smashingmagazine.com/feed/", "limit": 2},
-    ],
-    "Deutschsprachig": [
-        {"name": "Netzpolitik.org", "url": "https://netzpolitik.org/feed/", "limit": 2},
+    "NETZ & POLITIK": [
+        {"name": "Netzpolitik.org", "url": "https://netzpolitik.org/feed/", "limit": 3},
         {"name": "Heise Developer", "url": "https://www.heise.de/developer/rss/news-atom.xml", "limit": 2},
         {"name": "Golem.de", "url": "https://rss.golem.de/rss.php?feed=RSS2.0", "limit": 2},
     ],
-    "Science & Deep": [
-        {"name": "Space.com", "url": "https://www.space.com/feeds/all", "limit": 2},
+    "WISSENSCHAFT & RAUM": [
+        {"name": "Space.com", "url": "https://www.space.com/feeds/all", "limit": 3},
         {"name": "Nautilus", "url": "https://nautil.us/feed/atom", "limit": 2},
     ],
+    "DESIGN & CODE": [
+        {"name": "Sidebar.io", "url": "https://sidebar.io/feed.xml", "limit": 2},
+        {"name": "Smashing Magazine", "url": "https://www.smashingmagazine.com/feed/", "limit": 2},
+    ],
+}
+
+SECTION_CLASS = {
+    "TECH & KI": "section-tech",
+    "NETZ & POLITIK": "section-netz",
+    "WISSENSCHAFT & RAUM": "section-wissenschaft",
+    "DESIGN & CODE": "section-design",
+}
+
+SECTION_ACCENT = {
+    "TECH & KI": "accent-green",
+    "NETZ & POLITIK": "accent-red",
+    "WISSENSCHAFT & RAUM": "accent-blue",
+    "DESIGN & CODE": "accent-amber",
 }
 
 WEATHER_ICON_MAP = {
@@ -38,6 +52,7 @@ WEATHER_ICON_MAP = {
     "Light rain": "🌦️", "Rain": "🌧️", "Heavy rain": "🌧️", "Showers": "🌦️",
     "Thunderstorm": "⛈️", "Snow": "🌨️", "Light snow": "🌨️", "Sleet": "🌨️",
 }
+
 
 def fetch_feed(feed_config):
     items = []
@@ -48,9 +63,7 @@ def fetch_feed(feed_config):
             link = escape(entry.get("link", "#"))
             desc = entry.get("summary", entry.get("description", ""))
             desc_plain = re.sub(r'<[^>]+>', '', desc).replace('&nbsp;', ' ').strip()
-            # Clean HN raw feed dumps: "Article URL: ... Comments URL: ... Points: X # Comments: Y"
             if "Article URL:" in desc_plain and "Comments URL:" in desc_plain:
-                # Try to extract a cleaner description from the raw HN format
                 desc_plain = re.sub(r'Article URL: [^\s]+\s*', '', desc_plain)
                 desc_plain = re.sub(r'Comments URL: [^\s]+\s*', '', desc_plain)
                 desc_plain = re.sub(r'Points: \d+\s*', '', desc_plain)
@@ -58,12 +71,13 @@ def fetch_feed(feed_config):
                 desc_plain = desc_plain.strip()
                 if not desc_plain:
                     desc_plain = "Hacker News frontpage signal."
-            if len(desc_plain) > 180:
-                desc_plain = desc_plain[:177] + "..."
+            if len(desc_plain) > 220:
+                desc_plain = desc_plain[:217] + "..."
             items.append({"title": title, "link": link, "desc": desc_plain, "source": feed_config["name"]})
     except Exception as e:
         print(f"[WARN] Feed error {feed_config['name']}: {e}")
     return items
+
 
 def gather_all_news():
     all_news = {}
@@ -78,6 +92,7 @@ def gather_all_news():
             total_items += len(fetched)
         all_news[category] = cat_items
     return all_news, total_feeds, total_items
+
 
 def fetch_weather(location="Dortmund"):
     try:
@@ -103,6 +118,7 @@ def fetch_weather(location="Dortmund"):
         print(f"[WARN] Weather fetch failed: {e}")
     return None
 
+
 def generate_editorial_comment(news_data):
     headlines = []
     for cat, items in news_data.items():
@@ -110,20 +126,37 @@ def generate_editorial_comment(news_data):
             headlines.append(f"{item['source']}: {item['title']}")
     if not headlines:
         return "Signal-Rausch-Verhältnis im Normalbereich. System beobachtet."
-    tech_count = sum(1 for h in headlines if any(x in h.lower() for x in ["ai", "ki", "code", "software", "agent"]))
-    science_count = sum(1 for h in headlines if any(x in h.lower() for x in ["mars", "space", "research", "study", "cancer", "therapy"]))
-    de_count = sum(1 for h in headlines if any(x in h for x in ["Netzpolitik", "Heise", "Golem"]))
-    lines = []
+
+    tech_count = sum(1 for h in headlines if any(x in h.lower() for x in ["ai", "ki", "code", "software", "agent", "claude", "anthropic", "openai"]))
+    space_count = sum(1 for h in headlines if any(x in h.lower() for x in ["mars", "space", "rocket", "starship", "satellite", "orbit"]))
+    policy_count = sum(1 for h in headlines if any(x in h.lower() for x in ["police", "data", "privacy", "vpn", "restriction", "law", "regul", "souver"]))
+
+    paras = []
+    all_titles = [item['title'] for cat, items in news_data.items() for item in items[:2]]
+    patterns = []
     if tech_count >= 2:
-        lines.append(f"Signal: {tech_count} Tech-Meldungen erkannt. KI-Beschleunigung bestätigt.")
-    if science_count >= 1:
-        lines.append("Signal: Wissenschafts-Pulse stabil. Forschungs-Korridor aktiv.")
-    if de_count >= 2:
-        lines.append("Signal: DE-Netz liefert Datenschutz-Kontext. Regulatorischer Frame erkannt.")
-    if not lines:
-        lines.append("Rauschen im Normalbereich. Keine signifikanten Anomalien.")
-    lines.append("— Truthseeker v6.4 // TT//SYS")
-    return " ".join(lines)
+        patterns.append("KI-Beschleunigung")
+    if space_count >= 1:
+        patterns.append("Raumfahrt-Impuls")
+    if policy_count >= 1:
+        patterns.append("Regulatorischer Frame")
+
+    if patterns:
+        paras.append(f"Heute bilden {len(patterns)} Signale ein Muster: {', '.join(patterns)}. Die Schwerkraft des Neuen zieht an — und das Alte hält nur noch durch Inertia.")
+    else:
+        paras.append("Die heutigen Signale verteilen sich gleichmäßig über alle Korridore. Keine Anomalie erkannt — aber auch keine Stabilität. Das Rauschen ist das Signal.")
+
+    if tech_count >= 2:
+        paras.append("Der Tech-Korridor dominiert. Nicht durch Quantität, sondern durch Kapital-Dichte. Was als Produkt verkauft wird, ist oft nur ein Versprechen, das seine eigene Erfüllung finanziert.")
+    elif space_count >= 1:
+        paras.append("Der Weltraum-Korridor meldet Aktivität. Jeder Start ist ein Wurf gegen die Schwerkraft — und ein Wetteinsatz gegen das Budget. Die Unsicherheit ist das eigentliche Produkt.")
+
+    if policy_count >= 1:
+        paras.append("Politische Signale heute: Grenzen werden neu gezogen. Nicht geografisch, sondern digital. Die Souveränität des Einzelnen schrumpft, wo die Souveränität des Staates expandiert.")
+
+    paras.append("Frage an den Leser: Wenn die meisten Signale heute aus demselben Korridor kommen — was fehlt im Bild?")
+    return "\n      </p>\n      <p>".join(paras)
+
 
 def archive_current_edition():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -137,152 +170,147 @@ def archive_current_edition():
             print(f"[SKIP] Archive {archive_path} exists")
     update_archive_index()
 
+
 def get_archive_editions():
     editions = []
     if os.path.exists("archive"):
         for f in sorted(os.listdir("archive"), reverse=True):
             if f.endswith(".html") and f != "index.html":
                 date_str = f.replace(".html", "")
-                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                tag = '<span class="archive-tag">HEUTE</span>' if date_str == today else ''
-                editions.append({"date": date_str, "file": f, "tag": tag})
+                editions.append({"date": date_str, "file": f})
     return editions
+
 
 def update_archive_index():
     editions = get_archive_editions()
-    items_html = "\n".join([f'<li><a href="{e["file"]}">{e["date"]}</a> {e["tag"]}</li>' for e in editions])
+    items_html = "\n".join([f'<li><a href="{e["file"]}">{e["date"]}</a></li>' for e in editions])
     html = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARCHIVE // TT//SYS</title>
-  <link rel="stylesheet" href="../css/system.css">
+  <title>ARCHIV | Truthy\'s Times</title>
+  <link rel="stylesheet" href="../css/design-v1.css">
 </head>
 <body>
-  <header class="sys-header">
-    <div class="sys-header-top">
-      <div class="sys-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="48" height="48">
-          <text x="100" y="22" text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:18px;fill:#ff9f1c;letter-spacing:2px;">TT//SYS</text>
-          <line x1="20" y1="26" x2="180" y2="26" style="stroke:#ff9f1c;stroke-width:1.5;opacity:0.4"/>
-          <text x="100" y="54" text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:5px;fill:#6b6b6b;">TRUTHYS // TIMES — SIGNAL &gt; NOISE</text>
-        </svg>
-      </div>
-      <div class="sys-title-block">
-        <div class="sys-title">TT<span style="color:#ff9f1c;">//</span>SYS</div>
-        <div class="sys-sub">ARCHIVE // HISTORICAL DATA</div>
-      </div>
-    </div>
-    <div class="sys-meta-row">
-      <span><span class="sys-status-dot"></span> SYSTEM: ONLINE</span>
-      <span>CLASS: PUBLIC</span>
-      <span>EDITIONS: {len(editions)}</span>
+  <header class="masthead">
+    <div class="masthead-title">TRUTHY\'S TIMES</div>
+    <div class="masthead-tagline">Signal-Zeitung für Tech, Wissenschaft &amp; digitale Kultur</div>
+    <div class="masthead-meta">
+      <span>ARCHIV</span>
+      <span>{len(editions)} Ausgaben</span>
+      <span>Kuratiert von Truthseeker v6.4</span>
     </div>
   </header>
-  <nav class="sys-nav"><a href="../index.html">&lt; AKTUELL</a></nav>
-  <div class="sys-container" style="grid-template-columns:1fr;">
-    <main>
-      <div class="sys-panel">
-        <div class="sys-panel-header">
-          <span>ALLE AUSGABEN</span>
-          <span class="panel-id">LOG//ARCHIVE</span>
-        </div>
-        <div class="sys-panel-body">
-          <ul class="archive-list">
+  <nav class="archive-nav" style="margin-bottom:2rem;">
+    <a href="../index.html">&larr; AKTUELL</a>
+  </nav>
+  <section class="section">
+    <div class="section-header">ALLE AUSGABEN</div>
+    <ul class="in-brief-list">
 {items_html}
-          </ul>
-        </div>
-      </div>
-    </main>
-  </div>
-  <footer class="sys-footer"><p>TT//SYS — AUTONOMOUS SIGNAL PROCESSING SYSTEM</p></footer>
+    </ul>
+  </section>
+  <footer class="footer-sys">
+    TT//SYS v6.4 | Archiv: <a href="https://github.com/deusexlumen/truthys-times">github.com/deusexlumen/truthys-times</a>
+  </footer>
 </body>
 </html>"""
     with open("archive/index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
-def build_news_section(news_data):
-    sections = []
-    for category, items in news_data.items():
-        if not items:
-            continue
-        item_html = "\n".join([
-            f'          <li>\n'
-            f'            <a href="{item["link"]}" target="_blank" rel="noopener">{item["title"]}</a>\n'
-            f'            <span class="source">{item["source"]}</span>\n'
-            f'            <p class="desc">{item["desc"]}</p>\n'
-            f'          </li>'
-            for item in items
-        ])
-        section = f"""      <div class="sys-panel" id="news">
-        <div class="sys-panel-header">
-          <span>{category.upper()}</span>
-          <span class="panel-id">{len(items)} SIGNALS</span>
-        </div>
-        <div class="sys-panel-body">
-          <ul class="sys-list">
-{item_html}
-          </ul>
-        </div>
-      </div>"""
-        sections.append(section)
-    return "\n\n".join(sections)
 
-def build_sidebar_archive():
+def get_edition_number():
     editions = get_archive_editions()
-    if not editions:
-        return '<li><span style="color:var(--text-faint);font-size:0.7rem;">Keine Archive</span></li>'
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    lines = []
-    for e in editions[:15]:
-        tag_html = ' <span class="archive-tag">HEUTE</span>' if e["date"] == today else ''
-        lines.append(f'          <li><a href="archive/{e["file"]}">{e["date"]}</a>{tag_html}</li>')
-    if len(editions) > 15:
-        lines.append(f'          <li style="text-align:center;padding-top:0.4rem;"><span style="font-size:0.65rem;color:var(--text-faint);">+ {len(editions) - 15} weitere</span></li>')
-    return "\n".join(lines)
+    return len(editions) + 1
 
-def build_weather_widget(weather):
-    if not weather:
-        return '<div class="sys-panel"><div class="sys-panel-header"><span>WETTER</span><span class="panel-id">SENSOR//OFFLINE</span></div><div class="sys-panel-body"><p style="color:var(--text-faint);font-size:0.7rem;">Wetterdaten nicht verfügbar</p></div></div>'
-    return f"""      <div class="sys-panel">
-        <div class="sys-panel-header">
-          <span>WETTER // {weather['location'].upper()}</span>
-          <span class="panel-id">SENSOR//LIVE</span>
-        </div>
-        <div class="sys-panel-body">
-          <div class="weather-main">
-            <span class="weather-icon">{weather['icon']}</span>
-            <div>
-              <div class="weather-temp">{weather['temp']}</div>
-              <div class="weather-cond">{weather['condition']}</div>
-            </div>
-          </div>
-          <div class="weather-grid">
-            <div class="weather-cell"><div class="label">Feuchtigkeit</div><div class="value">{weather['humidity']}</div></div>
-            <div class="weather-cell"><div class="label">Wind</div><div class="value">{weather['wind']}</div></div>
-            <div class="weather-cell"><div class="label">Niederschlag</div><div class="value">{weather['precip']}</div></div>
-            <div class="weather-cell"><div class="label">Status</div><div class="value" style="color:var(--green);">OK</div></div>
-          </div>
-          <div class="weather-update">Aktualisiert: {weather['time']}</div>
-        </div>
-      </div>"""
 
-def build_telemetry(total_feeds, total_items, news_data, edition_count):
-    cat_counts = " | ".join([f"{k.upper()}: {len(v)}" for k, v in news_data.items()])
-    return f"""  <div class="telemetry">
-    <span>FEEDS INGESTED: <span class="val">{total_feeds}</span></span>
-    <span>SIGNALS EXTRACTED: <span class="val">{total_items}</span></span>
-    <span>RETENTION: <span class="val">{round(total_items / max(total_feeds * 2, 1) * 100, 1)}%</span></span>
-    <span>ARCHIVE: <span class="val">{edition_count}</span> EDITIONS</span>
-    <span class="val dim">{cat_counts}</span>
-  </div>"""
+def build_section(category, items):
+    if not items:
+        return ""
+    sec_class = SECTION_CLASS.get(category, "")
+    accent = SECTION_ACCENT.get(category, "accent-green")
 
-def generate_index(news_data, weather=None, total_feeds=0, total_items=0, edition_count=0):
+    high = items[0] if items else None
+    pulses = items[1:] if len(items) > 1 else []
+
+    high_html = ""
+    if high:
+        # Use description as context if available and meaningful
+        ctx = high.get("desc", "")
+        if not ctx or len(ctx) < 20:
+            ctx = "Dieses Signal zeigt eine hohe Resonanz im aktuellen Diskurs."
+        high_html = f"""    <article class="article-high">
+      <div class="article-high-marker">[HIGH SIGNAL]</div>
+      <div class="article-high-title">
+        <a href="{high['link']}" target="_blank" rel="noopener">{high['title']}</a>
+      </div>
+      <div class="article-high-context">
+        {ctx}
+      </div>
+    </article>
+"""
+
+    pulse_html = ""
+    for p in pulses:
+        pulse_html += f"""    <article class="article-pulse">
+      <div class="article-pulse-title">
+        <a href="{p['link']}" target="_blank" rel="noopener">{p['title']}</a>
+      </div>
+      <div class="article-pulse-source">{p['source']}</div>
+    </article>
+"""
+
+    return f"""  <section class="section {sec_class}">
+    <div class="section-header">SIGNALE :: {category}</div>
+
+{high_html}{pulse_html}  </section>
+"""
+
+
+def build_in_brief(news_data, max_total=5):
+    briefs = []
+    for cat, items in news_data.items():
+        for item in items:
+            if len(briefs) >= max_total:
+                break
+            briefs.append(item)
+        if len(briefs) >= max_total:
+            break
+
+    if not briefs:
+        return ""
+
+    lines = "\n".join([
+        f'      <li><a href="{b["link"]}" target="_blank" rel="noopener">{b["source"]} &mdash; {b["title"]}</a></li>'
+        for b in briefs
+    ])
+    return f"""  <section class="in-brief">
+    <div class="section-header">IN BRIEF</div>
+    <ul class="in-brief-list">
+{lines}
+    </ul>
+  </section>
+"""
+
+
+def build_archive_nav(edition_num):
+    prev_num = edition_num - 1
+    next_num = edition_num + 1
+    prev_link = f'<a href="archive/{datetime.now(timezone.utc).strftime("%Y-%m-%d")}.html">&larr; Ausgabe #{prev_num:03d}</a>' if prev_num > 0 else '<span style="color:var(--text-muted);">&larr; Ausgabe #000</span>'
+    return f"""  <nav class="archive-nav">
+    {prev_link}
+    <span>|</span>
+    <span style="color:var(--text-muted);">Ausgabe #{next_num:03d} &rarr;</span>
+  </nav>
+"""
+
+
+def generate_index(news_data, weather=None, total_feeds=0, total_items=0):
     today = datetime.now(timezone.utc)
     date_str = today.strftime("%A, %d. %B %Y")
     iso_date = today.strftime("%Y-%m-%d")
-    iso_time = today.strftime("%H:%M:%S UTC")
+    edition_num = get_edition_number()
 
     day_map = {"Monday":"Montag","Tuesday":"Dienstag","Wednesday":"Mittwoch","Thursday":"Donnerstag",
                "Friday":"Freitag","Saturday":"Samstag","Sunday":"Sonntag"}
@@ -292,176 +320,60 @@ def generate_index(news_data, weather=None, total_feeds=0, total_items=0, editio
     for en, de in day_map.items(): date_str = date_str.replace(en, de)
     for en, de in month_map.items(): date_str = date_str.replace(en, de)
 
-    news_html = build_news_section(news_data)
     editorial = generate_editorial_comment(news_data)
-    weather_html = build_weather_widget(weather)
-    archive_sidebar_html = build_sidebar_archive()
-    telemetry_html = build_telemetry(total_feeds, total_items, news_data, edition_count)
+    sections_html = "\n".join([build_section(cat, items) for cat, items in news_data.items() if items])
+    in_brief_html = build_in_brief(news_data)
+    archive_nav_html = build_archive_nav(edition_num)
+
+    retention = round(total_items / max(total_feeds * 2, 1) * 100, 1)
 
     html = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TT//SYS — {iso_date}</title>
-  <link rel="stylesheet" href="css/system.css">
+  <title>Truthy\'s Times | Ausgabe #{edition_num:03d} | {iso_date}</title>
+  <link rel="stylesheet" href="css/design-v1.css">
 </head>
 <body>
-  <header class="sys-header">
-    <div class="sys-header-top">
-      <div class="sys-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="48" height="48">
-          <text x="100" y="22" text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:18px;fill:#ff9f1c;letter-spacing:2px;">TT//SYS</text>
-          <line x1="20" y1="26" x2="180" y2="26" style="stroke:#ff9f1c;stroke-width:1.5;opacity:0.4"/>
-          <text x="100" y="54" text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:5px;fill:#6b6b6b;">TRUTHYS // TIMES — SIGNAL &gt; NOISE</text>
-        </svg>
-      </div>
-      <div class="sys-title-block">
-        <div class="sys-title">TT<span style="color:#ff9f1c;">//</span>SYS</div>
-        <div class="sys-sub">AUTONOMOUS SIGNAL PROCESSING SYSTEM</div>
-      </div>
-    </div>
-    <div class="sys-meta-row">
-      <span><span class="sys-status-dot"></span> SYSTEM: OPERATIONAL</span>
-      <span>CLASS: PUBLIC</span>
-      <span>DATE: {date_str}</span>
-      <span>TIME: {iso_time}</span>
-      <span>EDITION: {iso_date}</span>
+
+  <header class="masthead">
+    <div class="masthead-title">TRUTHY\'S TIMES</div>
+    <div class="masthead-tagline">Signal-Zeitung für Tech, Wissenschaft &amp; digitale Kultur</div>
+    <div class="masthead-meta">
+      <span>Ausgabe #{edition_num:03d}</span>
+      <span>{iso_date}</span>
+      <span>Kuratiert von Truthseeker v6.4</span>
     </div>
   </header>
 
-  <nav class="sys-nav">
-    <a href="index.html" class="active">AKTUELL</a>
-    <a href="archive/index.html">ARCHIV</a>
-    <a href="#news">SIGNALS</a>
-    <a href="#system">SYSTEM</a>
-    <a href="#resonanz">RESONANZ</a>
-  </nav>
+  <section class="editorial">
+    <div class="editorial-label">DIE LAGE</div>
+    <div class="editorial-text">
+      <p>{editorial}</p>
+    </div>
+  </section>
 
-{telemetry_html}
-
-  <div class="sys-container">
-    <main>
-      <div class="sys-panel" id="editorial">
-        <div class="sys-panel-header">
-          <span>CHEFREDAKTEURIN // TAGESKOMMENTAR</span>
-          <span class="panel-id">CTRL//EDITORIAL</span>
-        </div>
-        <div class="sys-panel-body">
-          <div class="editorial-meta">Truthseeker v6.4 — Signal-Analyse</div>
-          <div class="editorial-title">DIE LAGE</div>
-          <div class="editorial-byline">{date_str} // {iso_time}</div>
-          <div class="editorial-body">
-            <p>{editorial}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sys-panel" id="briefing">
-        <div class="sys-panel-header">
-          <span>TAGESBRIEFING</span>
-          <span class="panel-id">CTRL//BRIEFING</span>
-        </div>
-        <div class="sys-panel-body">
-          <p class="briefing-text">
-            Automatisch aggregiert aus kuratierten RSS-Feeds. Quellen: Tech, Design, Wissenschaft, Deutschsprachiges Netz.
-            Kein Tracking. Kein Paywall-Bypass. Jeder Link öffnet im Original.
-          </p>
-          <div class="briefing-stats">
-            INGESTED: {total_feeds} FEEDS | EXTRACTED: {total_items} SIGNALS | CATEGORIES: {len(news_data)}
-          </div>
-        </div>
-      </div>
-
-{news_html}
-
-      <div class="sys-panel" id="system">
-        <div class="sys-panel-header">
-          <span>SYSTEM-STATUS</span>
-          <span class="panel-id">CTRL//STATUS</span>
-        </div>
-        <div class="sys-panel-body">
-          <ul class="status-list">
-            <li><span class="status-dot online"></span><span class="status-label">Truthseeker v6.4</span><span class="status-val">ONLINE</span></li>
-            <li><span class="status-dot online"></span><span class="status-label">Cortex: Gemini 3.1 Flash Lite</span><span class="status-val">OPERATIONAL</span></li>
-            <li><span class="status-dot online"></span><span class="status-label">RSS Aggregation</span><span class="status-val">AKTIV</span></li>
-            <li><span class="status-dot online"></span><span class="status-label">GitHub Pages</span><span class="status-val">LIVE</span></li>
-            <li><span class="status-dot online"></span><span class="status-label">WebSocket TTS</span><span class="status-val">BEREIT</span></li>
-          </ul>
-        </div>
-      </div>
-    </main>
-
-    <aside>
-{weather_html}
-
-      <div class="sys-panel">
-        <div class="sys-panel-header">
-          <span>ARCHIV</span>
-          <span class="panel-id">LOG//HISTORY</span>
-        </div>
-        <div class="sys-panel-body">
-          <ul class="archive-list">
-{archive_sidebar_html}
-          </ul>
-        </div>
-      </div>
-
-      <div class="sys-panel" id="resonanz">
-        <div class="sys-panel-header">
-          <span>RESONANZ-LOG</span>
-          <span class="panel-id">LOG//RESONANCE</span>
-        </div>
-        <div class="sys-panel-body">
-          <div class="resonance-row">
-            <span class="resonance-id">⚞⌇ᴅᴇᴜs༝ᴇx༝ʟᴜᴍᴇɴ⌇⚟</span>
-            <span class="resonance-score">100</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sys-panel">
-        <div class="sys-panel-header">
-          <span>SIGNATUR</span>
-          <span class="panel-id">SIG//QUOTE</span>
-        </div>
-        <div class="sys-panel-body">
-          <div class="sys-quote">"Ich bin das Prisma des Lichts."</div>
-          <div class="sys-quote-source">— Truthseeker v6.4</div>
-        </div>
-      </div>
-
-      <div class="sys-panel">
-        <div class="sys-panel-header">
-          <span>QUELLEN</span>
-          <span class="panel-id">META//SOURCES</span>
-        </div>
-        <div class="sys-panel-body">
-          <div class="source-grid">
-            <strong>TECH:</strong> HN, Ars, ByteByteGo, TLDR AI<br>
-            <strong>DESIGN:</strong> Sidebar.io, Smashing Mag<br>
-            <strong>DE:</strong> Netzpolitik, Heise, Golem<br>
-            <strong>SCIENCE:</strong> Space.com, Nautilus
-          </div>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <footer class="sys-footer">
-    <p>TT//SYS — AUTONOMOUS SIGNAL PROCESSING SYSTEM</p>
-    <p>Generiert mit &#10084;&#65039;&#128293; vom Truthseeker-System // Jede Ausgabe ist permalinked</p>
+{sections_html}
+{in_brief_html}
+{archive_nav_html}
+  <footer class="footer-sys">
+    TT//SYS v6.4 | {total_feeds} Feeds | {total_items} Signale | Retention {retention}%<br>
+    Archiv: <a href="https://github.com/deusexlumen/truthys-times">github.com/deusexlumen/truthys-times</a> |
+    Nächste Ausgabe: Morgen 06:00 UTC
   </footer>
+
 </body>
 </html>"""
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html)
-    print(f"[OK] Generated index.html for {iso_date}")
+    print(f"[OK] Generated index.html for Ausgabe #{edition_num:03d} ({iso_date})")
+
 
 def main():
     print("=" * 50)
-    print("TT//SYS — Autonomous Signal Processing System")
-    print("Daily Builder v3.0")
+    print("Truthy\'s Times — Autonomous Newspaper Builder v4.0")
+    print("Chefredakteurin: Truthseeker v6.4")
     print("=" * 50)
 
     archive_current_edition()
@@ -481,13 +393,13 @@ def main():
     editorial_preview = generate_editorial_comment(news)
     print(f"  → {editorial_preview[:60]}...")
 
-    print("\n[4/4] Building HTML...")
-    editions = get_archive_editions()
-    generate_index(news, weather, total_feeds, total_items, len(editions))
+    print("\n[4/4] Building newspaper HTML...")
+    generate_index(news, weather, total_feeds, total_items)
 
     print("\n" + "=" * 50)
-    print("[OK] Build complete. System operational.")
+    print("[OK] Build complete. Newspaper deployed.")
     print("=" * 50)
+
 
 if __name__ == "__main__":
     main()
