@@ -1,7 +1,8 @@
-/* TT//SYS — System Interface Stylesheet
+/* TT//SYS — System Interface Stylesheet v2.0
  * TRUTHYS // TIMES — Autonomous Signal Processing System
  * Font: IBM Plex Mono (via Google Fonts)
  * Palette: Black + Amber (control system aesthetic)
+ * Update: 2026-05-22 — Mobile, a11y, print, motion
  */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
@@ -21,6 +22,11 @@
   --green: #4ade80;
   --red: #f87171;
   --font: "IBM Plex Mono", "JetBrains Mono", "Fira Code", monospace;
+  --radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,13 +72,12 @@ body {
   height: 100%;
 }
 
-.sys-title-block {}
-
 .sys-title {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem);
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--text);
+  text-wrap: balance;
 }
 
 .sys-title span {
@@ -128,15 +133,20 @@ body {
 .sys-nav a {
   color: var(--text-dim);
   text-decoration: none;
-  padding: 0.2rem 0.6rem;
+  padding: 0.3rem 0.6rem;
   border: 1px solid transparent;
   transition: all 0.15s;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.sys-nav a:hover {
+.sys-nav a:hover,
+.sys-nav a:focus-visible {
   color: var(--amber);
   border-color: var(--border-bright);
   background: var(--bg-panel);
+  outline: none;
 }
 
 .sys-nav a.active {
@@ -150,7 +160,7 @@ body {
   border-bottom: 1px solid var(--border);
   padding: 0.35rem 1rem;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem 1.5rem;
   flex-wrap: wrap;
   font-size: 0.65rem;
   color: var(--text-faint);
@@ -183,7 +193,11 @@ body {
 }
 
 @media (max-width: 900px) {
-  .sys-container { grid-template-columns: 1fr; }
+  .sys-container { grid-template-columns: 1fr; padding: 1rem 0.75rem; }
+  .sys-header { padding: 1rem 0.75rem 0.75rem; }
+  .sys-meta-row { gap: 0.75rem; }
+  .telemetry { gap: 0.5rem 1rem; }
+  .sys-nav { gap: 0.2rem; padding: 0.3rem 0.75rem; }
 }
 
 /* ── PANELS ── */
@@ -225,10 +239,11 @@ body {
 }
 
 .editorial-title {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   font-weight: 600;
   margin-bottom: 0.35rem;
   color: var(--text);
+  text-wrap: balance;
 }
 
 .editorial-byline {
@@ -283,10 +298,21 @@ body {
   font-size: 0.8rem;
   display: block;
   margin-bottom: 0.15rem;
+  text-wrap: pretty;
 }
 
-.sys-list li a:hover {
+.sys-list li a:hover,
+.sys-list li a:focus-visible {
   color: var(--amber);
+  outline: none;
+}
+
+.sys-list li a:visited {
+  color: var(--text-dim);
+}
+
+.sys-list li a:visited:hover {
+  color: var(--amber-dim);
 }
 
 .sys-list li .source {
@@ -388,6 +414,7 @@ body {
 
 .weather-icon {
   font-size: 1.5rem;
+  line-height: 1;
 }
 
 .weather-temp {
@@ -429,10 +456,15 @@ body {
 .archive-list li a {
   color: var(--text-dim);
   text-decoration: none;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.archive-list li a:hover {
+.archive-list li a:hover,
+.archive-list li a:focus-visible {
   color: var(--amber);
+  outline: none;
 }
 
 .archive-tag {
@@ -476,6 +508,7 @@ body {
   color: var(--text-dim);
   font-size: 0.8rem;
   line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .sys-quote-source {
@@ -537,4 +570,13 @@ body {
 
 .archive-page .archive-list li {
   padding: 0.5rem 0;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .sys-header, .sys-nav, .telemetry, .sys-footer, .sys-panel:has(#system), .sys-panel:has(#resonanz) { display: none; }
+  .sys-panel { border: 1pt solid #ccc; break-inside: avoid; }
+  .sys-list li a { color: #000; text-decoration: underline; }
+  .sys-list li a:visited { color: #666; }
 }

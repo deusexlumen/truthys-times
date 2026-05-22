@@ -48,6 +48,16 @@ def fetch_feed(feed_config):
             link = escape(entry.get("link", "#"))
             desc = entry.get("summary", entry.get("description", ""))
             desc_plain = re.sub(r'<[^>]+>', '', desc).replace('&nbsp;', ' ').strip()
+            # Clean HN raw feed dumps: "Article URL: ... Comments URL: ... Points: X # Comments: Y"
+            if "Article URL:" in desc_plain and "Comments URL:" in desc_plain:
+                # Try to extract a cleaner description from the raw HN format
+                desc_plain = re.sub(r'Article URL: [^\s]+\s*', '', desc_plain)
+                desc_plain = re.sub(r'Comments URL: [^\s]+\s*', '', desc_plain)
+                desc_plain = re.sub(r'Points: \d+\s*', '', desc_plain)
+                desc_plain = re.sub(r'# Comments: \d+\s*', '', desc_plain)
+                desc_plain = desc_plain.strip()
+                if not desc_plain:
+                    desc_plain = "Hacker News frontpage signal."
             if len(desc_plain) > 180:
                 desc_plain = desc_plain[:177] + "..."
             items.append({"title": title, "link": link, "desc": desc_plain, "source": feed_config["name"]})
