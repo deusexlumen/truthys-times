@@ -7,6 +7,10 @@ import os
 import shutil
 import re
 import urllib.request
+import socket
+
+# Prevent hanging on slow/unresponsive feeds
+socket.setdefaulttimeout(20)
 from datetime import datetime, timezone
 from html import escape
 
@@ -412,3 +416,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
