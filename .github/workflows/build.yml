@@ -56,19 +56,44 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          EVENT="${{ github.event_name }}"
+          IS_TEST=false
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            IS_TEST=true
+          fi
+          if [ "${{ github.event.action }}" = "rebuild" ]; then
+            IS_TEST=true
+          fi
+
+          if [ "$IS_TEST" = "true" ]; then
+            TITLE="🧪 TEST — Truthys Times Preview"
+            COLOR=3066993
+            STATUS="TEST: PREVIEW"
+            FOOTER="TT//SYS Test Signal | Not Production"
+          else
+            TITLE="📰 Neue Ausgabe verfügbar"
+            COLOR=16750848
+            STATUS="SYSTEM: OPERATIONAL"
+            FOOTER="TT//SYS Autonomous Signal Processing"
+          fi
+
           PAYLOAD=$(jq -n \
             --arg date "$(date +%Y-%m-%d)" \
             --arg iso  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg title "$TITLE" \
+            --arg status "$STATUS" \
+            --arg footer "$FOOTER" \
+            --argjson color "$COLOR" \
             '{
               username: "TT//SYS",
               embeds: [{
-                title: "📰 Neue Ausgabe verfügbar",
+                title: $title,
                 description: "**Truthys Times** — Edition \($date)\n\n🔗 [https://deusexlumen.github.io/truthys-times/](https://deusexlumen.github.io/truthys-times/)",
-                color: 16750848,
+                color: $color,
                 timestamp: $iso,
-                footer: { text: "TT//SYS Autonomous Signal Processing" },
+                footer: { text: $footer },
                 fields: [
-                  { name: "📡 Status", value: "`SYSTEM: OPERATIONAL`", inline: true },
+                  { name: "📡 Status", value: "`\($status)`", inline: true },
                   { name: "🤖 Builder", value: "`Truthseeker v6.4`", inline: true }
                 ]
               }]
