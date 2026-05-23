@@ -56,39 +56,47 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail-with-body -X POST \
-            -H "Content-Type: application/json" \
-            "https://discord.com/api/webhooks/1506213103891644446/TH4v8H5jjlhO1K_iqzUg10Y3wnp-Aw1AqlFkU5aEnfv2FcaGILXDr83EJFntvTs6NcSS" \
-            -d '{
-              "username": "TT//SYS",
-              "embeds": [{
-                "title": "📰 Neue Ausgabe verfügbar",
-                "description": "**Truthys Times** — Edition '\''$(date +%Y-%m-%d)'\''\n\n🔗 [https://deusexlumen.github.io/truthys-times/](https://deusexlumen.github.io/truthys-times/)",
-                "color": 16750848,
-                "timestamp": "'\''$(date -u +%Y-%m-%dT%H:%M:%SZ)'\''",
-                "footer": { "text": "TT//SYS Autonomous Signal Processing" },
-                "fields": [
-                  { "name": "📡 Status", "value": "\`SYSTEM: OPERATIONAL\`", "inline": true },
-                  { "name": "🤖 Builder", "value": "\`Truthseeker v6.4\`", "inline": true }
+          PAYLOAD=$(jq -n \
+            --arg date "$(date +%Y-%m-%d)" \
+            --arg iso  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{
+              username: "TT//SYS",
+              embeds: [{
+                title: "📰 Neue Ausgabe verfügbar",
+                description: "**Truthys Times** — Edition \($date)\n\n🔗 [https://deusexlumen.github.io/truthys-times/](https://deusexlumen.github.io/truthys-times/)",
+                color: 16750848,
+                timestamp: $iso,
+                footer: { text: "TT//SYS Autonomous Signal Processing" },
+                fields: [
+                  { name: "📡 Status", value: "`SYSTEM: OPERATIONAL`", inline: true },
+                  { name: "🤖 Builder", value: "`Truthseeker v6.4`", inline: true }
                 ]
               }]
-            }'
+            }')
+          curl -fsS -X POST \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "https://discord.com/api/webhooks/1506213103891644446/TH4v8H5jjlhO1K_iqzUg10Y3wnp-Aw1AqlFkU5aEnfv2FcaGILXDr83EJFntvTs6NcSS"
 
       - name: Notify Discord — Failure
         if: failure()
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail-with-body -X POST \
-            -H "Content-Type: application/json" \
-            "https://discord.com/api/webhooks/1506213103891644446/TH4v8H5jjlhO1K_iqzUg10Y3wnp-Aw1AqlFkU5aEnfv2FcaGILXDr83EJFntvTs6NcSS" \
-            -d '{
-              "username": "TT//SYS",
-              "embeds": [{
-                "title": "⚠️ Build-Fehler",
-                "description": "**Truthys Times** Build fehlgeschlagen.\n\n🔗 [Actions Log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})",
-                "color": 15158332,
-                "timestamp": "'\''$(date -u +%Y-%m-%dT%H:%M:%SZ)'\''",
-                "footer": { "text": "TT//SYS Autonomous Signal Processing — FAILURE" }
+          PAYLOAD=$(jq -n \
+            --arg iso "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg url "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            '{
+              username: "TT//SYS",
+              embeds: [{
+                title: "⚠️ Build-Fehler",
+                description: "**Truthys Times** Build fehlgeschlagen.\n\n🔗 [Actions Log](\($url))",
+                color: 15158332,
+                timestamp: $iso,
+                footer: { text: "TT//SYS Autonomous Signal Processing — FAILURE" }
               }]
-            }'
+            }')
+          curl -fsS -X POST \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "https://discord.com/api/webhooks/1506213103891644446/TH4v8H5jjlhO1K_iqzUg10Y3wnp-Aw1AqlFkU5aEnfv2FcaGILXDr83EJFntvTs6NcSS"
