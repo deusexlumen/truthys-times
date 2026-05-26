@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta property="og:title" content="{og_title}">
+  <meta property="og:description" content="{og_description}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deusexlumen.github.io/truthys-times/">
+  <meta property="og:image" content="https://deusexlumen.github.io/truthys-times/assets/og-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Truthy's Times">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/design-v2.css">
+</head>
+<body>
+  <div class="issue-container issue-forscher {mono_class}">
+    <header class="masthead">
+      <div class="masthead-top">
+        <div><span class="prism-icon">🔶</span><span class="masthead-title">TRUTHY'S TIMES</span></div>
+        <div class="masthead-meta"><span>{date}</span><span>Issue #{issue_number}</span></div>
+      </div>
+      <div class="archetype-badge archetype-forscher">Der Forscher — Analytisch · Methodisch · Tief</div>
+      <div class="echo-score">Impuls-Stärke: <span class="echo-score-value">{impulse_score}/100</span> · Echo-Score: <span class="echo-score-value">{echo_score}</span></div>
+    </header>
+
+    <div class="atmosphere">{atmosphere}</div>
+
+    <section class="impulse-section">
+      <div class="impulse-label">Dominanter Impuls</div>
+      <h1 class="impulse-title">{impulse_title}</h1>
+      <div class="impulse-lead">{impulse_lead}</div>
+      <div class="impulse-context">{impulse_context}</div>
+      <div class="impulse-analysis">{impulse_analysis}</div>
+      <ul class="vektoren">{vektoren}</ul>
+      <div class="sources">
+        <div class="sources-label">Quellen</div>
+        {sources}
+      </div>
+    </section>
+
+    <section class="satellites-section">
+      <div class="satellites-label">Satelliten</div>
+      {satellites}
+    </section>
+
+    <footer class="footer">
+      <div class="footer-brand">🔶 Truthy's Times | Chefredakteurin: Kimi Claw</div>
+      <div class="footer-meta">Issue #{issue_number} | {date} | Archetyp: Der Forscher · Quellen validiert. Fakten geprüft. Stille respektiert.</div>
+    </footer>
+  </div>
+</body>
+</html>

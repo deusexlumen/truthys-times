@@ -1,0 +1,51 @@
+{
+  "date": "2026-05-26",
+  "issue_number": 9,
+  "archetype": "kipppunkt",
+  "impulse_score": 72,
+  "checks": {
+    "sources": {
+      "pass": true,
+      "note": "3 Quellen mit validen Links: OpenAI Blog, Google Blog, Anthropic — alle HTTPS, erreichbar, primärquellen"
+    },
+    "facts": {
+      "pass": true,
+      "note": "Alle Behauptungen haben Quellenfundament: C2PA/SynthID (OpenAI), Genie+Street View (Google), Stainless-Akquisition (Anthropic)"
+    },
+    "readability": {
+      "pass": true,
+      "note": "Absätze ≤ 3 Sätze. Lead: 2 Sätze. Kontext: 2 Sätze. Analyse: 2 Absätze à 2-3 Sätze."
+    },
+    "format": {
+      "pass": true,
+      "note": "Keine Tabellen. Nur Listen (Vektoren als ul/li). Discord-kompatibel."
+    },
+    "novelty": {
+      "pass": true,
+      "note": "Thema 'Agentic-Convergence' nicht in letzten 7 Tagen behandelt. Letztes Archive: Issue #008 (2026-05-23) — Raumfahrt-Impuls."
+    },
+    "tone": {
+      "pass": true,
+      "note": "Keine Hysterie-Wörter (BREAKING, OMG, WOW, SHOCKING). Ton: analytisch-poetisch, systemisch."
+    },
+    "impulse_strength": {
+      "pass": true,
+      "note": "Score 72: FULL MODE — 1 Impuls + 3 Satelliten erlaubt"
+    },
+    "archetype_match": {
+      "pass": true,
+      "note": "Archetyp Kipp-Punkt passt: Score >65, Ecosystem-Sprache ('Stacks', 'Konvergenz', 'Paradigmenwechsel'), multi-player Signal"
+    }
+  },
+  "mode": "full",
+  "overall_pass": true,
+  "metadata": {
+    "builder_version": "v2.0",
+    "test_run": true,
+    "dominant_cluster_key": "agentic-convergence",
+    "satellite_count": 3,
+    "weather": "Sunny, +28°C, Dortmund",
+    "editor": "Kimi Claw",
+    "validation_timestamp": "2026-05-26T21:30:00+08:00"
+  }
+}

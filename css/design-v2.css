@@ -1,0 +1,426 @@
+/* ============================================================
+   Truthy's Times — Design v2.0 (Archetype-Driven)
+   Chefredakteurin: Truthseeker v6.4
+   Stand: 2026-05-26
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Base */
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #e6e6e6;
+  --text-secondary: #999999;
+  --text-muted: #666666;
+  --border-subtle: #2a2a2a;
+  --border-strong: #404040;
+
+  /* Archetype Accents */
+  --forscher: #4A90D9;
+  --sturm: #E74C3C;
+  --kipppunkt: #F1C40F;
+  --rauschen: #95A5A6;
+  --echo: #9B59B6;
+  --splitter: #1ABC9C;
+
+  /* Typography */
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--text-secondary);
+  color: var(--bg-primary);
+}
+
+/* ============================================================
+   ISSUE CONTAINER
+   ============================================================ */
+
+.issue-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+
+.masthead {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.prism-icon {
+  font-size: 1.25rem;
+  margin-right: 0.25rem;
+}
+
+.masthead-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.masthead-meta span + span::before {
+  content: " · ";
+  margin: 0 0.25rem;
+}
+
+/* ============================================================
+   ARCHETYPE BADGE
+   ============================================================ */
+
+.archetype-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-top: var(--space-xs);
+}
+
+.archetype-forscher { background: rgba(74, 144, 217, 0.15); color: var(--forscher); border: 1px solid rgba(74, 144, 217, 0.3); }
+.archetype-sturm { background: rgba(231, 76, 60, 0.15); color: var(--sturm); border: 1px solid rgba(231, 76, 60, 0.3); }
+.archetype-kipppunkt { background: rgba(241, 196, 15, 0.15); color: var(--kipppunkt); border: 1px solid rgba(241, 196, 15, 0.3); }
+.archetype-rauschen { background: rgba(149, 165, 166, 0.15); color: var(--rauschen); border: 1px solid rgba(149, 165, 166, 0.3); }
+.archetype-echo { background: rgba(155, 89, 182, 0.15); color: var(--echo); border: 1px solid rgba(155, 89, 182, 0.3); }
+.archetype-splitter { background: rgba(26, 188, 156, 0.15); color: var(--splitter); border: 1px solid rgba(26, 188, 156, 0.3); }
+
+/* ============================================================
+   ATMOSPHERE
+   ============================================================ */
+
+.atmosphere {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--border-subtle);
+}
+
+/* ============================================================
+   DOMINANT IMPULSE
+   ============================================================ */
+
+.impulse-section {
+  margin-bottom: var(--space-lg);
+}
+
+/* Archetype-colored left border on the whole issue */
+.issue-forscher .impulse-section { border-left: 3px solid var(--forscher); padding-left: var(--space-md); }
+.issue-sturm .impulse-section { border-left: 3px solid var(--sturm); padding-left: var(--space-md); }
+.issue-kipppunkt .impulse-section { border-left: 3px solid var(--kipppunkt); padding-left: var(--space-md); }
+.issue-rauschen .impulse-section { border-left: 3px solid var(--rauschen); padding-left: var(--space-md); }
+.issue-echo .impulse-section { border-left: 3px solid var(--echo); padding-left: var(--space-md); }
+.issue-splitter .impulse-section { border-left: 3px solid var(--splitter); padding-left: var(--space-md); }
+
+/* Archetype headline glow */
+.issue-forscher .impulse-title { text-shadow: 0 0 18px rgba(74, 144, 217, 0.25); }
+.issue-sturm .impulse-title { text-shadow: 0 0 22px rgba(231, 76, 60, 0.35); }
+.issue-kipppunkt .impulse-title { text-shadow: 0 0 18px rgba(241, 196, 15, 0.25); }
+.issue-rauschen .impulse-title { text-shadow: 0 0 14px rgba(149, 165, 166, 0.2); }
+.issue-echo .impulse-title { text-shadow: 0 0 18px rgba(155, 89, 182, 0.25); }
+.issue-splitter .impulse-title { text-shadow: 0 0 14px rgba(26, 188, 156, 0.25); }
+
+.impulse-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+  font-weight: 600;
+}
+
+.impulse-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.impulse-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.impulse-title a:hover {
+  text-decoration: underline;
+}
+
+.impulse-lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  font-style: italic;
+}
+
+.impulse-context,
+.impulse-analysis {
+  margin-bottom: var(--space-sm);
+}
+
+.impulse-context p,
+.impulse-analysis p {
+  margin-bottom: var(--space-xs);
+}
+
+/* Vektoren (bullet analysis points) */
+.vektoren {
+  margin: var(--space-sm) 0;
+  padding-left: var(--space-sm);
+}
+
+.vektoren li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.vektoren li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.issue-forscher .vektoren li::before { color: var(--forscher); }
+.issue-sturm .vektoren li::before { color: var(--sturm); }
+.issue-kipppunkt .vektoren li::before { color: var(--kipppunkt); }
+.issue-rauschen .vektoren li::before { color: var(--rauschen); }
+.issue-echo .vektoren li::before { color: var(--echo); }
+.issue-splitter .vektoren li::before { color: var(--splitter); }
+
+/* ============================================================
+   SOURCES
+   ============================================================ */
+
+.sources {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.sources-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.source {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.source a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+}
+
+.source a:hover {
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   SATELLITES
+   ============================================================ */
+
+.satellites-section {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.satellites-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+.satellite {
+  border-left: 2px solid var(--border-subtle);
+  padding-left: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.satellite-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.satellite-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.satellite-title a:hover {
+  text-decoration: underline;
+}
+
+.satellite-context {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.satellite-source {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   ECHO SCORE
+   ============================================================ */
+
+.echo-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+.echo-score-value {
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-sm);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-brand {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.footer-meta {
+  font-size: 0.75rem;
+}
+
+/* ============================================================
+   MONO-MODE ADJUSTMENTS
+   ============================================================ */
+
+.mono-mode .impulse-section {
+  margin-bottom: var(--space-xl);
+}
+
+.mono-mode .satellites-section {
+  display: none;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .issue-container {
+    padding: var(--space-sm);
+  }
+  .impulse-title {
+    font-size: 1.25rem;
+  }
+  .masthead-top {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .issue-container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}
