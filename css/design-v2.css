@@ -1,426 +1,191 @@
-/* ============================================================
-   Truthy's Times — Design v2.0 (Archetype-Driven)
-   Chefredakteurin: Truthseeker v6.4
-   Stand: 2026-05-26
-   ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
-
-:root {
-  /* Base */
-  --bg-primary: #0D0D0D;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1a1a1a;
-  --text-primary: #e6e6e6;
-  --text-secondary: #999999;
-  --text-muted: #666666;
-  --border-subtle: #2a2a2a;
-  --border-strong: #404040;
-
-  /* Archetype Accents */
-  --forscher: #4A90D9;
-  --sturm: #E74C3C;
-  --kipppunkt: #F1C40F;
-  --rauschen: #95A5A6;
-  --echo: #9B59B6;
-  --splitter: #1ABC9C;
-
-  /* Typography */
-  --font-mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
-
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2.5rem;
-  --space-xl: 4rem;
-}
-
-* {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-body {
-  font-family: var(--font-mono);
+  background: #0D0D0D;
+  color: #E8E8E8;
+  font-family: 'Space Mono', 'Courier New', monospace;
   line-height: 1.6;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
 }
-
-::selection {
-  background: var(--text-secondary);
-  color: var(--bg-primary);
-}
-
-/* ============================================================
-   ISSUE CONTAINER
-   ============================================================ */
 
 .issue-container {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
-  padding: var(--space-lg);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  line-height: 1.65;
+  padding: 2rem;
 }
 
-/* ============================================================
-   MASTHEAD
-   ============================================================ */
+/* Archetype variants */
+.issue-forscher { border-left: 3px solid #4A90D9; }
+.issue-sturm { border-left: 3px solid #E74C3C; }
+.issue-kipppunkt { border-left: 3px solid #F1C40F; }
+.issue-rauschen { border-left: 3px solid #95A5A6; }
+.issue-echo { border-left: 3px solid #9B59B6; }
+.issue-splitter { border-left: 3px solid #1ABC9C; }
 
+/* Masthead */
 .masthead {
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: var(--space-sm);
-  margin-bottom: var(--space-md);
+  border-bottom: 1px solid #2A2A2A;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .masthead-top {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-}
-
-.prism-icon {
-  font-size: 1.25rem;
-  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .masthead-title {
   font-weight: 700;
   font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+}
+
+.prism-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .masthead-meta {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
+  color: #8A8A8A;
+  font-size: 0.85rem;
 }
-
-.masthead-meta span + span::before {
-  content: " · ";
-  margin: 0 0.25rem;
-}
-
-/* ============================================================
-   ARCHETYPE BADGE
-   ============================================================ */
 
 .archetype-badge {
   display: inline-block;
-  padding: 0.25rem 0.6rem;
-  border-radius: 2px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  margin-top: var(--space-xs);
-}
-
-.archetype-forscher { background: rgba(74, 144, 217, 0.15); color: var(--forscher); border: 1px solid rgba(74, 144, 217, 0.3); }
-.archetype-sturm { background: rgba(231, 76, 60, 0.15); color: var(--sturm); border: 1px solid rgba(231, 76, 60, 0.3); }
-.archetype-kipppunkt { background: rgba(241, 196, 15, 0.15); color: var(--kipppunkt); border: 1px solid rgba(241, 196, 15, 0.3); }
-.archetype-rauschen { background: rgba(149, 165, 166, 0.15); color: var(--rauschen); border: 1px solid rgba(149, 165, 166, 0.3); }
-.archetype-echo { background: rgba(155, 89, 182, 0.15); color: var(--echo); border: 1px solid rgba(155, 89, 182, 0.3); }
-.archetype-splitter { background: rgba(26, 188, 156, 0.15); color: var(--splitter); border: 1px solid rgba(26, 188, 156, 0.3); }
-
-/* ============================================================
-   ATMOSPHERE
-   ============================================================ */
-
-.atmosphere {
-  color: var(--text-secondary);
-  font-style: italic;
-  margin-bottom: var(--space-md);
-  font-size: 0.9rem;
-  padding-left: var(--space-sm);
-  border-left: 2px solid var(--border-subtle);
-}
-
-/* ============================================================
-   DOMINANT IMPULSE
-   ============================================================ */
-
-.impulse-section {
-  margin-bottom: var(--space-lg);
-}
-
-/* Archetype-colored left border on the whole issue */
-.issue-forscher .impulse-section { border-left: 3px solid var(--forscher); padding-left: var(--space-md); }
-.issue-sturm .impulse-section { border-left: 3px solid var(--sturm); padding-left: var(--space-md); }
-.issue-kipppunkt .impulse-section { border-left: 3px solid var(--kipppunkt); padding-left: var(--space-md); }
-.issue-rauschen .impulse-section { border-left: 3px solid var(--rauschen); padding-left: var(--space-md); }
-.issue-echo .impulse-section { border-left: 3px solid var(--echo); padding-left: var(--space-md); }
-.issue-splitter .impulse-section { border-left: 3px solid var(--splitter); padding-left: var(--space-md); }
-
-/* Archetype headline glow */
-.issue-forscher .impulse-title { text-shadow: 0 0 18px rgba(74, 144, 217, 0.25); }
-.issue-sturm .impulse-title { text-shadow: 0 0 22px rgba(231, 76, 60, 0.35); }
-.issue-kipppunkt .impulse-title { text-shadow: 0 0 18px rgba(241, 196, 15, 0.25); }
-.issue-rauschen .impulse-title { text-shadow: 0 0 14px rgba(149, 165, 166, 0.2); }
-.issue-echo .impulse-title { text-shadow: 0 0 18px rgba(155, 89, 182, 0.25); }
-.issue-splitter .impulse-title { text-shadow: 0 0 14px rgba(26, 188, 156, 0.25); }
-
-.impulse-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-xs);
-  font-weight: 600;
-}
-
-.impulse-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: var(--space-sm);
-  line-height: 1.3;
-  color: var(--text-primary);
-}
-
-.impulse-title a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.impulse-title a:hover {
-  text-decoration: underline;
-}
-
-.impulse-lead {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-sm);
-  font-style: italic;
-}
-
-.impulse-context,
-.impulse-analysis {
-  margin-bottom: var(--space-sm);
-}
-
-.impulse-context p,
-.impulse-analysis p {
-  margin-bottom: var(--space-xs);
-}
-
-/* Vektoren (bullet analysis points) */
-.vektoren {
-  margin: var(--space-sm) 0;
-  padding-left: var(--space-sm);
-}
-
-.vektoren li {
-  list-style: none;
-  position: relative;
-  padding-left: 1.2rem;
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
-}
-
-.vektoren li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--text-muted);
-}
-
-.issue-forscher .vektoren li::before { color: var(--forscher); }
-.issue-sturm .vektoren li::before { color: var(--sturm); }
-.issue-kipppunkt .vektoren li::before { color: var(--kipppunkt); }
-.issue-rauschen .vektoren li::before { color: var(--rauschen); }
-.issue-echo .vektoren li::before { color: var(--echo); }
-.issue-splitter .vektoren li::before { color: var(--splitter); }
-
-/* ============================================================
-   SOURCES
-   ============================================================ */
-
-.sources {
-  margin-top: var(--space-md);
-  padding-top: var(--space-sm);
-  border-top: 1px dashed var(--border-subtle);
-}
-
-.sources-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-xs);
-}
-
-.source {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
-}
-
-.source a {
-  color: var(--text-secondary);
-  text-decoration: underline;
-  text-decoration-color: var(--border-strong);
-}
-
-.source a:hover {
-  color: var(--text-primary);
-}
-
-/* ============================================================
-   SATELLITES
-   ============================================================ */
-
-.satellites-section {
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-lg);
-}
-
-.satellites-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-sm);
-  font-weight: 600;
-}
-
-.satellite {
-  border-left: 2px solid var(--border-subtle);
-  padding-left: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
-.satellite-title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.satellite-title a {
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.satellite-title a:hover {
-  text-decoration: underline;
-}
-
-.satellite-context {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.25rem;
-}
-
-.satellite-source {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* ============================================================
-   ECHO SCORE
-   ============================================================ */
-
-.echo-score {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.7rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.75rem;
   border-radius: 2px;
   font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.archetype-forscher { background: rgba(74, 144, 217, 0.15); color: #4A90D9; border: 1px solid #4A90D9; }
+.archetype-sturm { background: rgba(231, 76, 60, 0.15); color: #E74C3C; border: 1px solid #E74C3C; }
+.archetype-kipppunkt { background: rgba(241, 196, 15, 0.15); color: #F1C40F; border: 1px solid #F1C40F; }
+.archetype-rauschen { background: rgba(149, 165, 166, 0.15); color: #95A5A6; border: 1px solid #95A5A6; }
+.archetype-echo { background: rgba(155, 89, 182, 0.15); color: #9B59B6; border: 1px solid #9B59B6; }
+.archetype-splitter { background: rgba(26, 188, 156, 0.15); color: #1ABC9C; border: 1px solid #1ABC9C; }
+
+.echo-score {
+  font-size: 0.8rem;
+  color: #8A8A8A;
 }
 
 .echo-score-value {
+  color: #E8E8E8;
+}
+
+/* Atmosphere */
+.atmosphere {
+  color: #8A8A8A;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Content */
+.impulse {
+  margin-bottom: 2rem;
+}
+
+.impulse-title {
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: #E8E8E8;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+.issue-sturm .impulse-title { text-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
+.issue-kipppunkt .impulse-title { text-shadow: 0 0 20px rgba(241, 196, 15, 0.2); }
+.issue-echo .impulse-title { text-shadow: 0 0 20px rgba(155, 89, 182, 0.3); }
 
-.footer {
-  border-top: 1px solid var(--border-subtle);
-  margin-top: var(--space-xl);
-  padding-top: var(--space-sm);
-  font-size: 0.8rem;
-  color: var(--text-muted);
+.impulse p {
+  margin-bottom: 1rem;
+  max-width: 65ch;
 }
 
-.footer-brand {
-  font-weight: 600;
-  color: var(--text-secondary);
+.impulse ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.impulse li {
+  margin-bottom: 0.75rem;
+}
+
+/* Satellites */
+.satellites {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #2A2A2A;
+}
+
+.satellites h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8A8A8A;
+  margin-bottom: 1rem;
+}
+
+.satellite {
+  border-left: 2px solid #2A2A2A;
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.satellite h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: #E8E8E8;
+}
+
+.satellite p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.source {
+  color: #8A8A8A;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.sources {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.sources li {
+  color: #8A8A8A;
+  font-size: 0.85rem;
   margin-bottom: 0.25rem;
 }
 
-.footer-meta {
-  font-size: 0.75rem;
+.sources li::before {
+  content: "→ ";
+  color: #4A90D9;
 }
 
-/* ============================================================
-   MONO-MODE ADJUSTMENTS
-   ============================================================ */
-
-.mono-mode .impulse-section {
-  margin-bottom: var(--space-xl);
+/* Footer */
+.footer {
+  border-top: 1px solid #2A2A2A;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  color: #8A8A8A;
 }
 
-.mono-mode .satellites-section {
-  display: none;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
+/* Responsive */
 @media (max-width: 600px) {
   .issue-container {
-    padding: var(--space-sm);
-  }
-  .impulse-title {
-    font-size: 1.25rem;
+    padding: 1rem;
   }
   .masthead-top {
     flex-direction: column;
-    gap: var(--space-xs);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ============================================================
-   PRINT
-   ============================================================ */
-
-@media print {
-  body {
-    background: white;
-    color: black;
-  }
-  .issue-container {
-    max-width: 100%;
-    padding: 1rem;
+    gap: 0.5rem;
   }
 }
