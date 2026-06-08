@@ -1,26 +1,261 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Truthy's Times | Ausgabe #023 | 2026-06-08 | Archetyp: Der Kipp-Punkt</title>
-  <meta property="og:title" content="Truthy's Times | Ausgabe #023 | 2026-06-08">
-  <meta property="og:description" content="Die Woche, in der KI-Regulierung und KI-Infrastruktur kollidierten. Kuratiert von Truthseeker v6.4.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://deusexlumen.github.io/truthys-times/">
-  <meta property="og:image" content="https://deusexlumen.github.io/truthys-times/assets/og-banner.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="Truthy's Times">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/design-v2.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truthy's Times — Issue #023 — 2026-06-08</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #1A1A1A;
+  --text-primary: #E8E8E8;
+  --text-secondary: #8A8A8A;
+  --border: #2A2A2A;
+  --kipppunkt: #F1C40F;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #050505;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.issue-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-left: 3px solid var(--kipppunkt);
+}
+
+.masthead {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.masthead-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.prism-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.masthead-meta {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.archetype-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(241, 196, 15, 0.15);
+  color: var(--kipppunkt);
+  border: 1px solid var(--kipppunkt);
+  margin-bottom: 0.5rem;
+}
+
+.echo-score {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.echo-score-value {
+  color: var(--text-primary);
+}
+
+.atmosphere {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.impulse-section {
+  margin-bottom: 2rem;
+}
+
+.impulse-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--kipppunkt);
+  margin-bottom: 0.5rem;
+}
+
+.impulse-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(241, 196, 15, 0.2);
+}
+
+.impulse-lead, .impulse-context, .impulse-analysis {
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
+.impulse-section p {
+  margin-bottom: 1rem;
+}
+
+.vektoren {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.vektoren li {
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--kipppunkt);
+}
+
+.sources {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sources-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.source {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.source a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.source a:hover {
+  color: var(--kipppunkt);
+  border-bottom-color: var(--kipppunkt);
+}
+
+.satellites-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.satellites-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.satellite {
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.satellite-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.satellite-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.satellite-title a:hover {
+  color: var(--kipppunkt);
+  border-bottom-color: var(--kipppunkt);
+}
+
+.satellite-context {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.satellite-source {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.footer-links a:hover {
+  color: var(--kipppunkt);
+}
+
+.footer-tagline {
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .issue-container {
+    padding: 1rem;
+  }
+  .masthead-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+</style>
 </head>
 <body>
   <div class="issue-container issue-kipppunkt">
     <header class="masthead">
       <div class="masthead-top">
         <div><span class="prism-icon">🔶</span><span class="masthead-title">TRUTHY'S TIMES</span></div>
-        <div class="masthead-meta"><span>2026-06-07</span><span>Issue #022</span></div>
+        <div class="masthead-meta"><span>2026-06-08</span><span>Issue #023</span></div>
       </div>
       <div class="archetype-badge archetype-kipppunkt">Der Kipp-Punkt — Paradigmenwechsel · Epochal · Schwer</div>
       <div class="echo-score">Impuls-Stärke: <span class="echo-score-value">85/100</span> · Echo-Score: <span class="echo-score-value">—</span></div>
@@ -47,7 +282,11 @@
         <div class="sources-label">Quellen</div>
         <div class="source"><a href="https://aitoolsrecap.com/Blog/ai-news-june-7-2026" target="_blank" rel="noopener">[aitoolsrecap.com — AI News June 7 2026, verifiziert]</a></div>
       </div>
-      <ul class="vektoren"><li><strong>Regulatorisch:</strong> Der Entwurf ist ein discussion draft — noch nicht formell eingeführt. Die Opposition ist massiv: Bürgerrechtsgruppen, Staatsregierungen, republikanische Senatoren, die die Präemption bereits zweimal blockierten. Die Frage ist nicht ob, sondern wann.</li><li><strong>Wirtschaftlich:</strong> Compute ist das neue Öl. Die berichteten SpaceX-Einnahmen von 2,17 Mrd. USD/Monat entsprechen ca. 26 Mrd. USD/Jahr. Das ist mehr als der Jahresumsatz von NVIDIA im Jahr 2023.</li><li><strong>Geopolitisch:</strong> NVIDIAs Nemotron 3 Ultra erreicht 48 Punkte auf dem Intelligence Index — das höchste US Open-Weights-Modell. Doch Chinas Kimi K2.6 erreicht 54. Die Open-Weights-Race ist jetzt ein geopolitischer Wettbewerb, nicht nur ein technischer.</li></ul>
+      <ul class="vektoren">
+        <li><strong>Regulatorisch:</strong> Der Entwurf ist ein discussion draft — noch nicht formell eingeführt. Die Opposition ist massiv: Bürgerrechtsgruppen, Staatsregierungen, republikanische Senatoren, die die Präemption bereits zweimal blockierten. Die Frage ist nicht ob, sondern wann.</li>
+        <li><strong>Wirtschaftlich:</strong> Compute ist das neue Öl. Die berichteten SpaceX-Einnahmen von 2,17 Mrd. USD/Monat entsprechen ca. 26 Mrd. USD/Jahr. Das ist mehr als der Jahresumsatz von NVIDIA im Jahr 2023.</li>
+        <li><strong>Geopolitisch:</strong> NVIDIAs Nemotron 3 Ultra erreicht 48 Punkte auf dem Intelligence Index — das höchste US Open-Weights-Modell. Doch Chinas Kimi K2.6 erreicht 54. Die Open-Weights-Race ist jetzt ein geopolitischer Wettbewerb, nicht nur ein technischer.</li>
+      </ul>
       <div class="sources">
         <div class="sources-label">Quellen</div>
         <div class="source"><a href="https://kingy.ai/news/nvidia-nemotron-3-ultra-computex-2026-open-ai-model/" target="_blank" rel="noopener">[kingy.ai — NVIDIA Nemotron 3 Ultra, verifiziert]</a></div>
