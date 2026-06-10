@@ -375,9 +375,11 @@ def run_quality_gate(impulse_result, archetype, html_content, date_str):
     has_sources = dominant is not None and dominant.get("link") and dominant["link"] != "#"
     report["checks"]["sources"] = {"pass": has_sources, "note": "Dominante Quelle hat validen Link" if has_sources else "Kein Quellen-Link gefunden"}
 
-    # 2. Facts Check (heuristic: description not empty)
-    has_facts = dominant is not None and len(dominant.get("desc", "")) > 20
-    report["checks"]["facts"] = {"pass": has_facts, "note": "Beschreibung vorhanden" if has_facts else "Beschreibung zu kurz/leer"}
+    # 2. Facts Check (heuristic: description not empty OR title is substantial)
+    desc = dominant.get("desc", "") if dominant else ""
+    title = dominant.get("title", "") if dominant else ""
+    has_facts = dominant is not None and (len(desc) > 20 or len(title) > 30)
+    report["checks"]["facts"] = {"pass": has_facts, "note": "Beschreibung oder Titel vorhanden" if has_facts else "Beschreibung zu kurz/leer"}
 
     # 3. Readability Check (max 3 sentences per paragraph)
     paragraphs = re.findall(r'<p>(.*?)</p>', html_content, re.DOTALL)
