@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-02",
-  "issue_number": 46,
+  "date": "2026-06-10",
+  "issue_number": 24,
   "archetype": "kipppunkt",
   "impulse_score": 100,
   "checks": {
@@ -10,7 +10,7 @@
     },
     "facts": {
       "pass": true,
-      "note": "Beschreibung vorhanden"
+      "note": "Beschreibung oder Titel vorhanden"
     },
     "readability": {
       "pass": true,
