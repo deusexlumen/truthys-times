@@ -1,41 +1,17 @@
 {
-  "date": "2026-06-14",
-  "issue_number": 23,
-  "archetype": "kipppunkt",
-  "impulse_score": 100,
+  "date": "2026-06-21",
+  "issue_number": 20260621,
+  "archetype": "Der Sturm",
+  "impulse_score": 86,
   "checks": {
-    "sources": {
-      "pass": true,
-      "note": "Dominante Quelle hat validen Link"
-    },
-    "facts": {
-      "pass": true,
-      "note": "Beschreibung oder Titel vorhanden"
-    },
-    "readability": {
-      "pass": true,
-      "note": "Absätze ≤ 4 Sätze"
-    },
-    "format": {
-      "pass": true,
-      "note": "Keine Tabellen"
-    },
-    "novelty": {
-      "pass": true,
-      "note": "Nicht in letzten 7 Tagen"
-    },
-    "tone": {
-      "pass": true,
-      "note": "Keine Hysterie-Wörter"
-    },
-    "impulse_strength": {
-      "pass": true,
-      "note": "Score 100: FULL"
-    },
-    "archetype_match": {
-      "pass": true,
-      "note": "Archetyp passt zum Signal"
-    }
+    "sources": {"pass": true, "note": "4 links found"},
+    "facts": {"pass": true, "note": "clean"},
+    "readability": {"pass": true, "note": "1558 chars, 0 long paras"},
+    "format": {"pass": true, "note": "No tables, no forbidden patterns"},
+    "novelty": {"pass": true, "note": "7-day dedup check"},
+    "tone": {"pass": true, "note": "clean"},
+    "impulse_strength": {"pass": true, "note": "Score 86: FULL"},
+    "archetype_match": {"pass": true, "note": "Archetyp passt zum Signal"}
   },
   "overall_pass": true,
   "mode": "full"
