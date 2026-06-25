@@ -135,6 +135,14 @@
       "echo_score": null,
       "reactions": 0,
       "notes": "Issue #20260621 | Manuelle Build nach Quality Gate Pass | Identity Verification on Claude + 3 Satelliten"
+    },
+    {
+      "date": "2026-06-25",
+      "archetype": "kipppunkt",
+      "impulse_score": 88,
+      "echo_score": null,
+      "reactions": 0,
+      "notes": "Issue #20260625 | Manuelle Build nach Quality Gate Pass | Schild und Schwert: KI als Verteidiger und Angreifer + 2 Satelliten"
     }
   ]
 }
