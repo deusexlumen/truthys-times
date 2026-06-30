@@ -151,6 +151,14 @@
       "echo_score": null,
       "reactions": 0,
       "notes": "Issue #20260625 | Manuelle Build nach Quality Gate Pass | Schild und Schwert: KI als Verteidiger und Angreifer + 2 Satelliten"
+    },
+    {
+      "date": "2026-06-25",
+      "archetype": "kipppunkt",
+      "impulse_score": 100,
+      "echo_score": null,
+      "reactions": 0,
+      "notes": "Issue #20260626 | Auto-generated via v2.0 impulse engine"
     }
   ]
 }
