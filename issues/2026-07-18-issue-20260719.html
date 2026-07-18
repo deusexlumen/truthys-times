@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truthy&apos;s Times | Ausgabe #20260719 | Der Kipp-Punkt</title>
+  <style>
+/* ============================================================
+   Truthy&apos;s Times — Design v2.1 "Der Kipp-Punkt"
+   Archetyp: Kipp-Punkt (Gold #F1C40F)
+   Ausgabe: #20260719 | 2026-07-18
+   ============================================================ */
+
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-glass: rgba(30, 41, 59, 0.6);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+
+  --border-subtle: rgba(148, 163, 184, 0.12);
+  --border-hover: rgba(148, 163, 184, 0.25);
+
+  /* Archetyp-Akzent: Gold für Kipp-Punkt */
+  --accent-archetype: #F1C40F;
+  --glow-archetype: rgba(241, 196, 15, 0.15);
+
+  --accent-tech: #34d399;
+  --accent-netz: #f87171;
+  --accent-wissen: #60a5fa;
+  --accent-design: #fbbf24;
+
+  --glow-tech: rgba(52, 211, 153, 0.15);
+  --glow-netz: rgba(248, 113, 113, 0.15);
+  --glow-wissen: rgba(96, 165, 250, 0.15);
+  --glow-design: rgba(251, 191, 36, 0.15);
+
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60vh;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(241, 196, 15, 0.08) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Masthead */
+.masthead {
+  padding: var(--space-lg) var(--space-md);
+  margin-bottom: var(--space-xl);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.masthead::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-archetype), var(--accent-netz), var(--accent-archetype));
+  opacity: 0.9;
+}
+
+.masthead-title {
+  font-family: var(--font-body);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.2;
+}
+
+.masthead-tagline {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+}
+
+.masthead-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-sm);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+/* Archetyp-Badge */
+.archetype-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--accent-archetype);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-md);
+}
+
+.archetype-badge::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-archetype);
+  box-shadow: 0 0 8px var(--glow-archetype);
+}
+
+/* Signal-Strength */
+.signal-strength {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  display: inline-block;
+}
+
+.signal-value {
+  color: var(--accent-archetype);
+  font-weight: 600;
+}
+
+/* Editorial */
+.editorial {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-glass) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.editorial::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--space-lg);
+  bottom: var(--space-lg);
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent-archetype), var(--accent-netz));
+  border-radius: 0 2px 2px 0;
+}
+
+.editorial-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: var(--space-sm);
+}
+
+.editorial-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.editorial-text p {
+  margin-bottom: var(--space-sm);
+}
+
+.editorial-text p:last-child {
+  margin-bottom: 0;
+}
+
+.editorial-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Sections */
+.section {
+  margin-bottom: var(--space-2xl);
+}
+
+.section-header {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.section-header::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.section-tech .section-header { color: var(--accent-tech); }
+.section-tech .section-header::before { background: var(--accent-tech); box-shadow: 0 0 8px var(--glow-tech); }
+
+.section-netz .section-header { color: var(--accent-netz); }
+.section-netz .section-header::before { background: var(--accent-netz); box-shadow: 0 0 8px var(--glow-netz); }
+
+.section-wissenschaft .section-header { color: var(--accent-wissen); }
+.section-wissenschaft .section-header::before { background: var(--accent-wissen); box-shadow: 0 0 8px var(--glow-wissen); }
+
+.section-design .section-header { color: var(--accent-design); }
+.section-design .section-header::before { background: var(--accent-design); box-shadow: 0 0 8px var(--glow-design); }
+
+/* Article types */
+.article-high {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.article-high:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.article-high-marker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-xs);
+}
+
+.section-tech .article-high-marker { color: var(--accent-tech); }
+.section-netz .article-high-marker { color: var(--accent-netz); }
+.section-wissenschaft .article-high-marker { color: var(--accent-wissen); }
+.section-design .article-high-marker { color: var(--accent-design); }
+
+.article-high-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: var(--space-xs);
+  letter-spacing: -0.01em;
+}
+
+.article-high-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.section-tech .article-high-title a:hover { color: var(--accent-tech); }
+.section-netz .article-high-title a:hover { color: var(--accent-netz); }
+.section-wissenschaft .article-high-title a:hover { color: var(--accent-wissen); }
+.section-design .article-high-title a:hover { color: var(--accent-design); }
+
+.article-high-context {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.article-pulse {
+  margin-bottom: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.article-pulse:last-child {
+  margin-bottom: 0;
+}
+
+.article-pulse:hover {
+  background: var(--bg-secondary);
+  border-color: var(--border-subtle);
+}
+
+.article-pulse-title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: var(--space-xs);
+}
+
+.article-pulse-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-pulse-title a:hover {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-pulse-source {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+/* In Brief */
+.in-brief {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.in-brief-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: var(--space-md);
+}
+
+.in-brief-list {
+  list-style: none;
+}
+
+.in-brief-list li {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  position: relative;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+
+.in-brief-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.in-brief-list li:hover {
+  color: var(--text-primary);
+}
+
+.in-brief-list li:hover::before {
+  color: var(--accent-archetype);
+}
+
+.in-brief-list li a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.in-brief-list li a:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-muted);
+}
+
+/* Sources */
+.sources {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.sources-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: var(--space-md);
+}
+
+.sources-list {
+  list-style: none;
+}
+
+.sources-list li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-md);
+  position: relative;
+  line-height: 1.5;
+}
+
+.sources-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+}
+
+.sources-list li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.sources-list li a:hover {
+  color: var(--accent-archetype);
+  border-bottom-color: var(--accent-archetype);
+}
+
+/* Footer */
+.footer-sys {
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg) var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.8;
+}
+
+.footer-sys a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.footer-sys a:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-muted);
+}
+
+/* Archive nav */
+.archive-nav {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.archive-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin: 0 var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.archive-nav a:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  body {
+    padding: var(--space-md) var(--space-sm);
+  }
+  .masthead {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+  .masthead-title {
+    font-size: 1.5rem;
+  }
+  .masthead-meta {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .editorial {
+    padding: var(--space-md);
+  }
+  .article-high {
+    padding: var(--space-sm);
+  }
+  .article-high-title {
+    font-size: 1.1rem;
+  }
+  .article-pulse {
+    padding: var(--space-sm);
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    color: black;
+    max-width: 100%;
+    padding: 1rem;
+  }
+  body::before { display: none; }
+  .masthead, .editorial, .article-high, .in-brief, .sources, .footer-sys {
+    background: white;
+    border-color: #ddd;
+    box-shadow: none;
+  }
+  .masthead::before, .editorial::after, .section-header::before { display: none; }
+  a { text-decoration: underline; color: black; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; transform: none !important; animation: none !important; }
+}
+
+a:focus-visible, .article-high:focus-within {
+  outline: 2px solid var(--accent-archetype);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(241, 196, 15, 0.3);
+  color: var(--text-primary);
+}
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- MASTHEAD -->
+  <!-- ============================================================ -->
+  <header class="masthead">
+    <div class="archetype-badge">Archetyp &mdash; Der Kipp-Punkt</div>
+    <div class="masthead-title">TRUTHY&apos;S TIMES</div>
+    <div class="masthead-tagline">Signal-Zeitung f&uuml;r Tech, Wissenschaft &amp; digitale Kultur</div>
+    <div class="masthead-meta">
+      <span>Ausgabe #20260719</span>
+      <span>2026-07-18</span>
+      <span>Kuratiert von Truthseeker v6.9</span>
+    </div>
+  </header>
+
+  <div class="signal-strength">
+    Signal-St&auml;rke: <span class="signal-value">95/100</span> &mdash; Mono-Mode (1 dominanter Impuls + 3 Satelliten)
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- EDITORIAL -->
+  <!-- ============================================================ -->
+  <section class="editorial">
+    <div class="editorial-label">DIE LAGE &mdash; DER KIPP-PUNKT</div>
+    <div class="editorial-text">
+      <p>
+        Der 17. Juli 2026 war ein echter <strong>Kipp-Punkt</strong> in der KI-Geopolitik und -Ökonomie. Die erwartete „Konvergenz“ — Gemini 3.5 Pro plus WAIC in Shanghai — materialisierte sich völlig anders als vorhergesagt. Kein Google-Launch. Stattdessen: eine massive Open-Weight-Offensive und ein chinesisches Governance-Coup.
+      </p>
+      <p>
+        Drei Signale bilden das Muster: <strong>Kimi K3</strong> stürmt die Coding-Charts, <strong>WAICO</strong> institutionalisiert chinesische KI-Diplomatie, und <strong>Apple</strong> überholt Nvidia als wertvollstes Unternehmen der Welt. Die Annahme, dass die Frontier dauerhaft einer Handvoll geschlossener westlicher Labs gehört, wurde an diesem Tag durchbohrt.
+      </p>
+      <p>
+        Der Westen antwortete mit Demis Hassabis&apos; Aufruf zu einer US-geführten Koalition — aber China hatte bereits geliefert. Nicht mit einer Pressemitteilung. Mit 29 Gründungsmitgliedern und einem Hauptsitz in Shanghai.
+      </p>
+      <p>
+        <em>Frage an den Leser: Wenn Open-Weight-Modelle die Frontier erreichen und Distribution wichtiger wird als rohe Compute — was bleibt dann von der alten Ordnung übrig?</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- RUBRIK: TECH & KI -->
+  <!-- ============================================================ -->
+  <section class="section section-tech">
+    <div class="section-header">SIGNALE :: TECH &amp; KI</div>
+
+    <article class="article-high">
+      <div class="article-high-marker">[HIGH SIGNAL]</div>
+      <div class="article-high-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Kimi K3 (Moonshot AI) — 2,8 Billionen Parameter MoE, #1 in Frontend Code Arena</a>
+      </div>
+      <div class="article-high-context">
+        Am 16. Juli um 23:59 UTC startete Moonshot AI das größte Open-Weight-Release aller Zeiten. 2,8 Billionen Parameter MoE, sofort Platz 1 in der Frontend Code Arena mit 76% Pairwise-Win-Rate gegen Claude Fable 5. Terminal-Bench 2.1: 88,3 — Top-Tier für agentisches Coding. Die API kostet $3 Input / $15 Output und unterbietet jeden Closed Frontier. Open Weights versprochen für den 27. Juli 2026. An dem Tag, an dem Google den Scheinwerfer haben wollte, hat ein chinesisches Lab die Coding-Charts erobert.
+      </div>
+    </article>
+
+    <article class="article-high">
+      <div class="article-high-marker">[HIGH SIGNAL]</div>
+      <div class="article-high-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Gemini 3.5 Pro — Launch FAILED</a>
+      </div>
+      <div class="article-high-context">
+        Keine offizielle Bestätigung von Google. Kein Model Card, keine Pricing Page, kein API-Listing. Ziel war der 17. Juli — verpasst, nach bereits im Juni verschobenem Termin. Nächster Gerüchtstermin: 24. Juli. Google DeepMind soll das Basismodell angeblich verworfen und von Grund auf neu aufgebaut haben. Vier Senior-Forscher wechselten in derselben Woche zu Anthropic. Das ist kein Delay. Das ist ein strategisches Vakuum.
+      </div>
+    </article>
+
+    <article class="article-high">
+      <div class="article-high-marker">[HIGH SIGNAL]</div>
+      <div class="article-high-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Anthropic Confidential S-1 Filing — IPO Ende 2026, $1T+ Bewertung</a>
+      </div>
+      <div class="article-high-context">
+        $47B annualisierter Umsatz, angeblich profitabel. Enterprise-first, Safety-forward. Der Kontrast zu OpenAI könnte nicht schärfer sein: Apple klagt, Regierungsbeteiligungen werden diskutiert, während Anthropic die Börsenreife vorbereitet. Die strategische Aufspaltung zwischen Enterprise und Consumer ist jetzt Institution.
+      </div>
+    </article>
+
+    <article class="article-pulse">
+      <div class="article-pulse-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Thinking Machines Inkling — Mira Muratis 975B Parameter Open-Weight-Modell</a>
+      </div>
+      <div class="article-pulse-source">BuildFastWithAI / Tech-Insider</div>
+    </article>
+
+    <article class="article-pulse">
+      <div class="article-pulse-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Fireworks AI — $1,5B bei $17,5B Bewertung</a>
+      </div>
+      <div class="article-pulse-source">BuildFastWithAI</div>
+    </article>
+
+    <article class="article-pulse">
+      <div class="article-pulse-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Meta — $50B Louisiana-Datenzentrum, $250B Gesamtinvestition</a>
+      </div>
+      <div class="article-pulse-source">BuildFastWithAI</div>
+    </article>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- RUBRIK: NETZ & POLITIK -->
+  <!-- ============================================================ -->
+  <section class="section section-netz">
+    <div class="section-header">SIGNALE :: NETZ &amp; POLITIK</div>
+
+    <article class="article-high">
+      <div class="article-high-marker">[HIGH SIGNAL]</div>
+      <div class="article-high-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">WAICO — Xi Jinping launcht Welt-KI-Kooperationsorganisation mit 29 Ländern</a>
+      </div>
+      <div class="article-high-context">
+        World Artificial Intelligence Cooperation Organization. 29 Länder als Gründungsmitglieder — Pakistan, Russland, Kasachstan und weitere. Hauptsitz: Shanghai. Xi: „KI-Entwicklung ist ein Symphonie der globalen Zusammenarbeit, kein Solo-Auftritt.“ Open-Source-Befürwortung plus Pledge für Global South Assistance. Kritik an US-Exportbeschränkungen. Das ist die folgenreichste KI-Governance-Bewegung des Jahres — keine Resolution, sondern eine Organisation mit Mitgliedern, Budget und Sitz. Demis Hassabis rief in derselben Woche zu einer US-geführten Koalition auf. China hatte bereits geliefert.
+      </div>
+    </article>
+
+    <article class="article-pulse">
+      <div class="article-pulse-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Google AI Mode Expansion — Instacart, Canva, YouTube Music</a>
+      </div>
+      <div class="article-pulse-source">BuildFastWithAI</div>
+    </article>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- RUBRIK: WISSENSCHAFT & RAUM -->
+  <!-- ============================================================ -->
+  <section class="section section-wissenschaft">
+    <div class="section-header">SIGNALE :: WISSENSCHAFT &amp; RAUM</div>
+
+    <article class="article-high">
+      <div class="article-high-marker">[HIGH SIGNAL]</div>
+      <div class="article-high-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Apple überholt Nvidia — ~$5 Billionen Marktkapitalisierung</a>
+      </div>
+      <div class="article-high-context">
+        Symbolisch: Distribution und Ökosystem schlagen rohe Compute. Apple bringt KI auf mehr Geräte als jeder andere. Eigene Silizium-Entwicklung, um Nvidia-Abhängigkeit zu reduzieren. Wenn Modelle kommoditisiert werden, gewinnt, wer sie ausliefert — nicht wer sie trainiert.
+      </div>
+    </article>
+
+    <article class="article-pulse">
+      <div class="article-pulse-title">
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">Humanoid Robotics Wave — Humanoid $150M, Walden $300M, Microagi $55M Seed</a>
+      </div>
+      <div class="article-pulse-source">BuildFastWithAI</div>
+    </article>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IN BRIEF -->
+  <!-- ============================================================ -->
+  <section class="in-brief">
+    <div class="in-brief-label">IN BRIEF</div>
+    <ul class="in-brief-list">
+      <li><a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">BuildFastWithAI — KI-News-Aggregator, Hauptquelle dieser Ausgabe</a></li>
+      <li><a href="https://tech-insider.org">Tech-Insider.org — Cross-Referenzierung WAICO &amp; Anthropic IPO</a></li>
+      <li><a href="https://it-rex.de">IT-Rex.de — europäische Perspektive auf Open-Weight-Entwicklungen</a></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SOURCES -->
+  <!-- ============================================================ -->
+  <section class="sources">
+    <div class="sources-label">QUELLEN &amp; ATTRIBUTION</div>
+    <ul class="sources-list">
+      <li>Primär-Aggregation: <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-18-2026">buildfastwithai.com/blogs/ai-news-today-july-18-2026</a></li>
+      <li>Cross-Referenzen: tech-insider.org, inews.zoombangla.com, it-rex.de, aivoax.com</li>
+      <li>Hinweis: Der Gemini 3.5 Pro „Launch“ von zoombangla ist UNBESTÄTIGT — alle anderen Quellen bestätigen: nicht offiziell released.</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ARCHIV-NAVIGATION -->
+  <!-- ============================================================ -->
+  <nav class="archive-nav">
+    <a href="#">&larr; Vorherige Ausgabe</a>
+    <span>|</span>
+    <a href="#">Nächste Ausgabe &rarr;</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- SYSTEM-FOOTER -->
+  <!-- ============================================================ -->
+  <footer class="footer-sys">
+    TT//SYS v6.9 | 6 Feeds | 12 Signale | Retention 95.5%<br>
+    Archiv: <a href="https://github.com/deusexlumen/truthys-times">github.com/deusexlumen/truthys-times</a> |
+    Nächste Ausgabe: Morgen 06:00 UTC
+  </footer>
+
+</body>
+</html>
