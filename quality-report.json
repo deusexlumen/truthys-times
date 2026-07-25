@@ -1,45 +1,42 @@
 {
   "date": "2026-07-25",
-  "issue_number": 20260725,
-  "archetype": "waechter",
-  "impulse_score": 82,
+  "issue_number": 20260727,
+  "archetype": "kipppunkt",
+  "impulse_score": 100,
   "checks": {
     "sources": {
       "pass": true,
-      "note": "10+ Quellen verifiziert — AI Tools Recap, Anthropic Official, SuperPrep, FelloAI, 123AI, GeoToolbox, AI Business, MarkTechPost, BrightCoding, Apple Newsroom, Tom's Guide, Auriga IT"
+      "note": "Dominante Quelle hat validen Link"
     },
     "facts": {
       "pass": true,
-      "note": "Alle Zahlen aus Primärquellen: Anthropic $47B ARR, OpenAI $25-33B, Gemini 70.7% TerminalBench, Anthropic Lobbying $1.6M Q1, Grok 4.5 $2/$6, Fable 5 80.4% SWE-Bench, Kimi K3 2.8T params"
+      "note": "Beschreibung oder Titel vorhanden"
     },
     "readability": {
       "pass": true,
-      "note": "Ein Satz pro Idee, strukturierte Absätze, max 65ch Breite"
+      "note": "Absätze ≤ 4 Sätze"
     },
     "format": {
       "pass": true,
-      "note": "HTML valid, Issue #20260725, Datum 2026-07-25, CSS design-v2.css, Archetyp-Badge korrekt"
+      "note": "Keine Tabellen"
     },
     "novelty": {
       "pass": true,
-      "note": "Kimi K3 (Jul 16), Grok 4.5 EU-Verfügbarkeit (Jul 16), White House Drafts (Jul 3) — alles ≤ 22 Tage, min. 1 Signal < 48h"
+      "note": "Nicht in letzten 7 Tagen"
     },
     "tone": {
       "pass": true,
-      "note": "Analytisch, kühl, präzise — Truthseeker-Stil. Keine generischen Disclaimers. Keine Hysterie."
+      "note": "Keine Hysterie-Wörter"
     },
     "impulse_strength": {
       "pass": true,
-      "note": "Score 82/100: STRONG — Drei Hauptartikel + 1 Kurzmeldung, klares Muster erkannt"
+      "note": "Score 100: FULL"
     },
     "archetype_match": {
       "pass": true,
-      "note": "Archetyp 'Der Waechter' passt zum dominierenden Thema (Export Controls, Pre-Release Review, Regulierung)"
+      "note": "Archetyp passt zum Signal"
     }
   },
   "overall_pass": true,
-  "mode": "full",
-  "quality_gate_score": 82,
-  "deployed": true,
-  "commit": "04b3ba3"
+  "mode": "full"
 }
