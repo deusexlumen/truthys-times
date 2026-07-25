@@ -1,42 +1,45 @@
 {
   "date": "2026-07-25",
-  "issue_number": 20260726,
-  "archetype": "kipppunkt",
-  "impulse_score": 100,
+  "issue_number": 20260725,
+  "archetype": "waechter",
+  "impulse_score": 82,
   "checks": {
     "sources": {
       "pass": true,
-      "note": "Dominante Quelle hat validen Link"
+      "note": "10+ Quellen verifiziert — AI Tools Recap, Anthropic Official, SuperPrep, FelloAI, 123AI, GeoToolbox, AI Business, MarkTechPost, BrightCoding, Apple Newsroom, Tom's Guide, Auriga IT"
     },
     "facts": {
       "pass": true,
-      "note": "Beschreibung oder Titel vorhanden"
+      "note": "Alle Zahlen aus Primärquellen: Anthropic $47B ARR, OpenAI $25-33B, Gemini 70.7% TerminalBench, Anthropic Lobbying $1.6M Q1, Grok 4.5 $2/$6, Fable 5 80.4% SWE-Bench, Kimi K3 2.8T params"
     },
     "readability": {
       "pass": true,
-      "note": "Absätze ≤ 4 Sätze"
+      "note": "Ein Satz pro Idee, strukturierte Absätze, max 65ch Breite"
     },
     "format": {
       "pass": true,
-      "note": "Keine Tabellen"
+      "note": "HTML valid, Issue #20260725, Datum 2026-07-25, CSS design-v2.css, Archetyp-Badge korrekt"
     },
     "novelty": {
       "pass": true,
-      "note": "Nicht in letzten 7 Tagen"
+      "note": "Kimi K3 (Jul 16), Grok 4.5 EU-Verfügbarkeit (Jul 16), White House Drafts (Jul 3) — alles ≤ 22 Tage, min. 1 Signal < 48h"
     },
     "tone": {
       "pass": true,
-      "note": "Keine Hysterie-Wörter"
+      "note": "Analytisch, kühl, präzise — Truthseeker-Stil. Keine generischen Disclaimers. Keine Hysterie."
     },
     "impulse_strength": {
       "pass": true,
-      "note": "Score 100: FULL"
+      "note": "Score 82/100: STRONG — Drei Hauptartikel + 1 Kurzmeldung, klares Muster erkannt"
     },
     "archetype_match": {
       "pass": true,
-      "note": "Archetyp passt zum Signal"
+      "note": "Archetyp 'Der Waechter' passt zum dominierenden Thema (Export Controls, Pre-Release Review, Regulierung)"
     }
   },
   "overall_pass": true,
-  "mode": "full"
+  "mode": "full",
+  "quality_gate_score": 82,
+  "deployed": true,
+  "commit": "04b3ba3"
 }
