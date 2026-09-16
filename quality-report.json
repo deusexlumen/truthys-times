@@ -1,42 +1,42 @@
 {
-  "date": "2026-09-15",
+  "date": "2026-09-16",
   "issue_number": 20260916,
   "archetype": "kipppunkt",
-  "impulse_score": 100,
+  "impulse_score": 95,
   "checks": {
     "sources": {
       "pass": true,
-      "note": "Dominante Quelle hat validen Link"
+      "note": "6 externe Quellen-Links, Primärquellen (darioamodei.com, Reuters via Yahoo, TechStartups) + Zitate exakt verifiziert (5x-Regel)"
     },
     "facts": {
       "pass": true,
-      "note": "Beschreibung oder Titel vorhanden"
+      "note": "Essay-Stufen, Marktdaten, Demand-Rationierung via Web-Search verifiziert, keine Halluzinationen"
     },
     "readability": {
       "pass": true,
-      "note": "Absätze ≤ 4 Sätze"
+      "note": "Kurze Sätze, Ein Satz pro Idee, keine verschachtelten Perioden"
     },
     "format": {
       "pass": true,
-      "note": "Keine Tabellen"
+      "note": "0 Tabellen, Listen-System, HTML valide, Datum & Nummer stimmen"
     },
     "novelty": {
       "pass": true,
-      "note": "Nicht in letzten 7 Tagen"
+      "note": "Alle Stories ≤72h (Essay 09-12, Trump 09-14/15, Gemini 3.8 Live 09-15)"
     },
     "tone": {
       "pass": true,
-      "note": "Keine Hysterie-Wörter"
+      "note": "Analytisch, kühl, präzise, keine Hysterie, keine Command-Werbung"
     },
     "impulse_strength": {
       "pass": true,
-      "note": "Score 100: FULL"
+      "note": "Score 95: Branchen-Koordination + Trump-Gegenrede + Marktreaktion = epochaler Cluster"
     },
     "archetype_match": {
       "pass": true,
-      "note": "Archetyp passt zum Signal"
+      "note": "Kipp-Punkt: Paradigmenwechsel (Labs als Antragsteller), epochal, schwer"
     }
   },
   "overall_pass": true,
-  "mode": "full"
+  "notes": "Auto-Stub (GitHub Actions Feed-Dump) ersetzt durch redaktionelle Build. Trump-Zitate 5x-verifiziert. Editorial-Continuity-Lede zu #20260727 und #20260915."
 }
