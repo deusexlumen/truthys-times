@@ -1,8 +1,8 @@
 name: Build TT//SYS v2.0
 
 on:
-  push:
-    branches: [main]
+  # Push-Trigger DEAKTIVIERT 2026-09-17 — Cron überschreibt kuratierte Issues
+  # Nur manuelle Builds via workflow_dispatch oder repository_dispatch
   workflow_dispatch:
     inputs:
       builder_version:
