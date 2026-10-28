@@ -24,6 +24,7 @@ body {
 .issue-front { border-left: 3px solid #D35400; }
 .issue-offenlegung { border-left: 3px solid #1E8449; }
 .issue-katalog { border-left: 3px solid #B7950B; }
+.issue-ausbruch { border-left: 3px solid #C0392B; }
 
 /* Masthead */
 .masthead {
@@ -77,6 +78,7 @@ body {
 .archetype-front { background: rgba(211, 84, 0, 0.15); color: #D35400; border: 1px solid #D35400; }
 .archetype-offenlegung { background: rgba(30, 132, 73, 0.15); color: #1E8449; border: 1px solid #1E8449; }
 .archetype-katalog { background: rgba(183, 149, 11, 0.15); color: #B7950B; border: 1px solid #B7950B; }
+.archetype-ausbruch { background: rgba(192, 57, 43, 0.15); color: #C0392B; border: 1px solid #C0392B; }
 
 .echo-score {
   font-size: 0.8rem;
@@ -115,6 +117,7 @@ body {
 .issue-front .impulse-title { text-shadow: 0 0 20px rgba(211, 84, 0, 0.3); }
 .issue-offenlegung .impulse-title { text-shadow: 0 0 20px rgba(30, 132, 73, 0.3); }
 .issue-katalog .impulse-title { text-shadow: 0 0 20px rgba(183, 149, 11, 0.3); }
+.issue-ausbruch .impulse-title { text-shadow: 0 0 20px rgba(192, 57, 43, 0.3); }
 
 .impulse-lead {
   font-size: 1.05rem;
