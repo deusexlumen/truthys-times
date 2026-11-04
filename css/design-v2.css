@@ -29,6 +29,7 @@ body {
 .issue-korrektur { border-left: 3px solid #2E4053; }
 .issue-divergenz { border-left: 3px solid #17A2B8; }
 .issue-rechnung { border-left: 3px solid #B87333; }
+.issue-gegenwind { border-left: 3px solid #607D8B; }
 
 /* Masthead */
 .masthead {
@@ -87,6 +88,7 @@ body {
 .archetype-korrektur { background: rgba(46, 64, 83, 0.15); color: #5D6D7E; border: 1px solid #2E4053; }
 .archetype-divergenz { background: rgba(23, 162, 184, 0.15); color: #17A2B8; border: 1px solid #17A2B8; }
 .archetype-rechnung { background: rgba(184, 115, 51, 0.15); color: #B87333; border: 1px solid #B87333; }
+.archetype-gegenwind { background: rgba(96, 125, 139, 0.15); color: #607D8B; border: 1px solid #607D8B; }
 
 .echo-score {
   font-size: 0.8rem;
@@ -131,6 +133,7 @@ body {
 .issue-divergenz { border-left: 3px solid #17A2B8; }
 .issue-divergenz .impulse-title { text-shadow: 0 0 20px rgba(23, 162, 184, 0.3); }
 .issue-rechnung .impulse-title { text-shadow: 0 0 20px rgba(184, 115, 51, 0.3); }
+.issue-gegenwind .impulse-title { text-shadow: 0 0 20px rgba(96, 125, 139, 0.3); }
 
 .impulse-lead {
   font-size: 1.05rem;
