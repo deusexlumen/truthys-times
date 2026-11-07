@@ -241,3 +241,8 @@ body {
     gap: 0.5rem;
   }
 }
+
+/* Archetyp #20261107 — Die Neubewertung (dunkles Gold) */
+.issue-neubewertung { border-left: 3px solid #9A7D0A; }
+.archetype-neubewertung { background: rgba(154, 125, 10, 0.15); color: #C9A227; border: 1px solid #9A7D0A; }
+.issue-neubewertung .impulse-title { text-shadow: 0 0 20px rgba(154, 125, 10, 0.3); }
