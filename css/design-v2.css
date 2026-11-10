@@ -246,3 +246,8 @@ body {
 .issue-neubewertung { border-left: 3px solid #9A7D0A; }
 .archetype-neubewertung { background: rgba(154, 125, 10, 0.15); color: #C9A227; border: 1px solid #9A7D0A; }
 .issue-neubewertung .impulse-title { text-shadow: 0 0 20px rgba(154, 125, 10, 0.3); }
+
+/* Archetyp #20261110 — Der Preiskrieg (tiefes Venedig-Rot) */
+.issue-preiskrieg { border-left: 3px solid #7B241C; }
+.archetype-preiskrieg { background: rgba(123, 36, 28, 0.15); color: #CD6155; border: 1px solid #7B241C; }
+.issue-preiskrieg .impulse-title { text-shadow: 0 0 20px rgba(123, 36, 28, 0.3); }
