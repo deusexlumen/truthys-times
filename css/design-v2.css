@@ -251,3 +251,8 @@ body {
 .issue-preiskrieg { border-left: 3px solid #7B241C; }
 .archetype-preiskrieg { background: rgba(123, 36, 28, 0.15); color: #CD6155; border: 1px solid #7B241C; }
 .issue-preiskrieg .impulse-title { text-shadow: 0 0 20px rgba(123, 36, 28, 0.3); }
+
+/* Archetyp #20261111 — Die Spanne (dunkles Teal — die Schieblehre) */
+.issue-spanne { border-left: 3px solid #117864; }
+.archetype-spanne { background: rgba(17, 120, 100, 0.15); color: #48C9B0; border: 1px solid #117864; }
+.issue-spanne .impulse-title { text-shadow: 0 0 20px rgba(17, 120, 100, 0.3); }
