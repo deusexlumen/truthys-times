@@ -256,3 +256,8 @@ body {
 .issue-spanne { border-left: 3px solid #117864; }
 .archetype-spanne { background: rgba(17, 120, 100, 0.15); color: #48C9B0; border: 1px solid #117864; }
 .issue-spanne .impulse-title { text-shadow: 0 0 20px rgba(17, 120, 100, 0.3); }
+
+/* Archetyp #20261113 — Der Sturz (abgrundtiefes Schwarzblau) */
+.issue-sturz { border-left: 3px solid #1B2631; }
+.archetype-sturz { background: rgba(27, 38, 49, 0.15); color: #808B96; border: 1px solid #1B2631; }
+.issue-sturz .impulse-title { text-shadow: 0 0 20px rgba(27, 38, 49, 0.5); }
