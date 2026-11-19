@@ -261,3 +261,6 @@ body {
 .issue-sturz { border-left: 3px solid #1B2631; }
 .archetype-sturz { background: rgba(27, 38, 49, 0.15); color: #808B96; border: 1px solid #1B2631; }
 .issue-sturz .impulse-title { text-shadow: 0 0 20px rgba(27, 38, 49, 0.5); }
+.issue-messwert { border-left: 3px solid #48C9B0; }
+.archetype-messwert { background: rgba(72, 201, 176, 0.15); color: #48C9B0; border: 1px solid #48C9B0; }
+.issue-messwert .impulse-title { text-shadow: 0 0 20px rgba(72, 201, 176, 0.5); }
